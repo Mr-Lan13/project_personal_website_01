@@ -183,10 +183,10 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   min-height: 100vh;
-  padding-top: 96px;
+  padding-top: 128px;
   padding-bottom: 90px;
 }
 
@@ -200,10 +200,18 @@ a {
   text-transform: uppercase;
 }
 
+.hero .eyebrow {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  z-index: 21;
+  margin: 0;
+}
+
 .hero-title {
   margin: 0;
   max-width: 760px;
-  font-size: clamp(104px, 10.5vw, 184px);
+  font-size: clamp(150px, 14vw, 236px);
   line-height: 0.86;
   font-weight: 780;
   letter-spacing: 0;
