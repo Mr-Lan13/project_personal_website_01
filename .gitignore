@@ -1,0 +1,6 @@
+node_modules/
+dist/
+outputs/
+work/npm-cache/
+.vite/
+*.log
