@@ -43,7 +43,7 @@ a {
 .content-main {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .content-main-inner {
