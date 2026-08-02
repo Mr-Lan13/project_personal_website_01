@@ -180,6 +180,7 @@ a {
 }
 
 .hero-inner {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -200,12 +201,10 @@ a {
 }
 
 .hero-title {
-  display: flex;
-  flex-direction: column;
   margin: 0;
-  max-width: 1120px;
+  max-width: 760px;
   font-size: clamp(104px, 10.5vw, 184px);
-  line-height: 0.78;
+  line-height: 0.86;
   font-weight: 780;
   letter-spacing: 0;
 }
@@ -215,10 +214,17 @@ a {
 }
 
 .hero-title-outline {
-  margin-top: 0.06em;
+  position: absolute;
+  top: 50%;
+  right: clamp(24px, 6vw, 112px);
+  font-size: clamp(82px, 7.5vw, 132px);
+  line-height: 0.8;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
   color: transparent;
   -webkit-text-stroke: 2px rgba(245, 245, 238, 0.92);
   text-stroke: 2px rgba(245, 245, 238, 0.92);
+  transform: translateY(-44%);
 }
 
 .hero-copy {
