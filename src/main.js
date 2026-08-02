@@ -147,24 +147,31 @@ function Experience() {
     { className: 'section experience', id: 'experience' },
     h(
       'div',
-      { className: 'page-shell split-layout' },
-      h('div', { className: 'portrait-frame' }, h('img', { src: './assets/portrait-lan.png', alt: 'Lan 人像' })),
+      { className: 'page-shell' },
       h(
         'div',
-        { className: 'profile-copy' },
-        h('p', { className: 'section-kicker' }, 'Profile'),
-        h('h2', null, '在视觉表达、AI 生成与产品体验之间建立清晰秩序。'),
-        h(
-          'p',
-          null,
-          '我是 Lan，视觉设计师 / AI 设计师 / 产品设计师。首版页面先以可替换内容承载你的个人经历：后续拿到简历、项目截图和参考站点后，可以继续细化真实履历、项目叙事、视觉资产和动效节奏。',
-        ),
+        { className: 'section-intro-row' },
+        h('div', { className: 'section-intro-title' }, h('p', { className: 'section-kicker' }, 'Profile'), h('h2', null, '在视觉表达、AI 生成与产品体验之间建立清晰秩序。')),
         h(
           'div',
-          { className: 'contact-row' },
-          h('a', { href: 'mailto:lan.design@email.com' }, Icon(Mail), 'lan.design@email.com'),
-          h('a', { href: '#contact' }, Icon(MessageCircle), '预约沟通'),
+          { className: 'profile-summary' },
+          h(
+            'p',
+            null,
+            '我是 Lan，视觉设计师 / AI 设计师 / 产品设计师。首版页面先以可替换内容承载你的个人经历：后续拿到简历、项目截图和参考站点后，可以继续细化真实履历、项目叙事、视觉资产和动效节奏。',
+          ),
+          h(
+            'div',
+            { className: 'contact-row' },
+            h('a', { href: 'mailto:lan.design@email.com' }, Icon(Mail), 'lan.design@email.com'),
+            h('a', { href: '#contact' }, Icon(MessageCircle), '预约沟通'),
+          ),
         ),
+      ),
+      h(
+        'div',
+        { className: 'experience-showcase' },
+        h('div', { className: 'portrait-frame' }, h('img', { src: './assets/portrait-lan.png', alt: 'Lan 人像' })),
         h(
           'div',
           { className: 'metrics-grid' },
@@ -211,14 +218,15 @@ function Strengths() {
     h(
       'div',
       { className: 'page-shell' },
-      h('div', { className: 'section-heading' }, h('div', null, h('p', { className: 'section-kicker' }, 'Capability'), h('h2', null, '个人优势'))),
+      h('div', { className: 'section-heading strength-heading' }, h('div', null, h('p', { className: 'section-kicker' }, 'Capability'), h('h2', null, '个人优势'))),
       h(
         'div',
         { className: 'strength-grid' },
-        strengths.map((item) =>
+        strengths.map((item, index) =>
           h(
             'article',
             { className: 'strength-card', key: item.title },
+            h('span', { className: 'strength-number' }, String(index + 1).padStart(2, '0')),
             h('div', { className: 'icon-box' }, Icon(item.icon, 24)),
             h('h3', null, item.title),
             h('p', null, item.body),
