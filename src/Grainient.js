@@ -64,7 +64,7 @@ void mainImage(out vec4 o, vec2 C){
 void main(){mainImage(fragColor,gl_FragCoord.xy);}`;
 
 const Grainient = ({
-  timeSpeed = 0.34,
+  timeSpeed = 0.68,
   colorBalance = 0.08,
   warpStrength = 1,
   warpFrequency = 4,
