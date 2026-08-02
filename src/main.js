@@ -11,6 +11,7 @@ import MoveUpRight from 'lucide-react/dist/esm/icons/move-up-right.js';
 import Palette from 'lucide-react/dist/esm/icons/palette.js';
 import Sparkles from 'lucide-react/dist/esm/icons/sparkles.js';
 import Workflow from 'lucide-react/dist/esm/icons/workflow.js';
+import Grainient from './Grainient.js';
 import './styles.css';
 
 const h = React.createElement;
@@ -253,7 +254,12 @@ function App() {
     React.Fragment,
     null,
     h(Hero),
-    h('main', null, h(Experience), h(Projects), h(Strengths), h(Contact)),
+    h(
+      'main',
+      { className: 'content-main' },
+      h('div', { className: 'grainient-layer', 'aria-hidden': true }, h(Grainient)),
+      h('div', { className: 'content-main-inner' }, h(Experience), h(Projects), h(Strengths), h(Contact)),
+    ),
     h('a', { className: 'floating-contact', href: 'mailto:lan.design@email.com', 'aria-label': '发送邮件联系 Lan' }, Icon(Sparkles), 'Offer'),
   );
 }
