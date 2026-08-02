@@ -56,7 +56,7 @@ a {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.72;
+  opacity: 0.9;
 }
 
 button,
@@ -327,7 +327,7 @@ a {
   padding: 150px 0;
   border-bottom: 1px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(5, 6, 7, 0.82), rgba(5, 6, 7, 0.68));
+    linear-gradient(180deg, rgba(5, 6, 7, 0.7), rgba(5, 6, 7, 0.52));
 }
 
 .split-layout {
@@ -544,7 +544,7 @@ a {
   background:
     radial-gradient(circle at 75% 55%, rgba(244, 212, 123, 0.12), transparent 26%),
     radial-gradient(circle at 24% 36%, rgba(120, 241, 218, 0.12), transparent 30%),
-    rgba(5, 6, 7, 0.62);
+    rgba(5, 6, 7, 0.48);
 }
 
 .contact-inner {
