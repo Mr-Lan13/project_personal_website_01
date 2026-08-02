@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import ArrowUpRight from 'lucide-react/dist/esm/icons/arrow-up-right.js';
 import BadgeCheck from 'lucide-react/dist/esm/icons/badge-check.js';
@@ -71,107 +71,18 @@ function Icon(IconComponent, size = 18) {
 }
 
 function VideoBackdrop() {
-  const canvasRef = useRef(null);
-  const videoRef = useRef(null);
-  const [videoReady, setVideoReady] = useState(false);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const video = videoRef.current;
-    const context = canvas.getContext('2d');
-    let frame = 0;
-    let rafId;
-    let recorder;
-    const chunks = [];
-
-    const resize = () => {
-      const ratio = window.devicePixelRatio || 1;
-      canvas.width = Math.floor(window.innerWidth * ratio);
-      canvas.height = Math.floor(window.innerHeight * ratio);
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
-      context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    };
-
-    const render = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const t = frame * 0.014;
-
-      const gradient = context.createLinearGradient(0, 0, width, height);
-      gradient.addColorStop(0, '#05070a');
-      gradient.addColorStop(0.44, '#0b1115');
-      gradient.addColorStop(1, '#111015');
-      context.fillStyle = gradient;
-      context.fillRect(0, 0, width, height);
-
-      context.globalCompositeOperation = 'screen';
-      for (let i = 0; i < 72; i += 1) {
-        const x = ((i * 149 + Math.sin(t + i) * 95 + frame * 0.24) % (width + 240)) - 120;
-        const y = ((i * 83 + Math.cos(t * 0.8 + i * 0.7) * 70) % (height + 220)) - 110;
-        const radius = 0.8 + (i % 5) * 0.34;
-        context.beginPath();
-        context.fillStyle = i % 3 === 0 ? 'rgba(90, 216, 196, 0.62)' : 'rgba(174, 126, 255, 0.42)';
-        context.arc(x, y, radius, 0, Math.PI * 2);
-        context.fill();
-      }
-
-      for (let i = 0; i < 11; i += 1) {
-        const y = height * (0.16 + i * 0.075) + Math.sin(t + i) * 8;
-        const startX = width * 0.12 + Math.cos(t * 0.75 + i) * 120;
-        const endX = width * 0.9 + Math.sin(t * 0.58 + i) * 90;
-        context.strokeStyle = `rgba(${i % 2 ? '92, 214, 203' : '180, 152, 255'}, ${0.08 + i * 0.006})`;
-        context.lineWidth = 1;
-        context.beginPath();
-        context.moveTo(startX, y);
-        context.bezierCurveTo(width * 0.36, y - 60, width * 0.62, y + 54, endX, y - 18);
-        context.stroke();
-      }
-
-      context.globalCompositeOperation = 'source-over';
-      context.fillStyle = 'rgba(0, 0, 0, 0.2)';
-      context.fillRect(0, 0, width, height);
-
-      frame += 1;
-      rafId = requestAnimationFrame(render);
-    };
-
-    resize();
-    window.addEventListener('resize', resize);
-    render();
-
-    if (canvas.captureStream && window.MediaRecorder) {
-      try {
-        const stream = canvas.captureStream(30);
-        recorder = new MediaRecorder(stream, { mimeType: 'video/webm;codecs=vp9' });
-        recorder.ondataavailable = (event) => {
-          if (event.data.size > 0) chunks.push(event.data);
-        };
-        recorder.onstop = () => {
-          const blob = new Blob(chunks, { type: 'video/webm' });
-          video.src = URL.createObjectURL(blob);
-          video.play().then(() => setVideoReady(true)).catch(() => setVideoReady(false));
-        };
-        recorder.start();
-        window.setTimeout(() => recorder?.state === 'recording' && recorder.stop(), 2600);
-      } catch {
-        setVideoReady(false);
-      }
-    }
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener('resize', resize);
-      if (recorder?.state === 'recording') recorder.stop();
-      if (video?.src?.startsWith('blob:')) URL.revokeObjectURL(video.src);
-    };
-  }, []);
-
   return h(
     'div',
     { className: 'video-backdrop', 'aria-hidden': true },
-    h('canvas', { ref: canvasRef, className: videoReady ? 'is-hidden' : '' }),
-    h('video', { ref: videoRef, className: videoReady ? 'is-visible' : '', autoPlay: true, muted: true, loop: true, playsInline: true }),
+    h('video', {
+      src: './assets/hero-background.mp4',
+      poster: './assets/project-ai-system.png',
+      autoPlay: true,
+      muted: true,
+      loop: true,
+      playsInline: true,
+      preload: 'auto',
+    }),
   );
 }
 
@@ -227,7 +138,7 @@ function Experience() {
     h(
       'div',
       { className: 'page-shell split-layout' },
-      h('div', { className: 'portrait-frame' }, h('img', { src: './assets/portrait-lan.png', alt: 'Lan 的人物视觉占位图' })),
+      h('div', { className: 'portrait-frame' }, h('img', { src: './assets/portrait-lan.png', alt: 'Lan 人像' })),
       h(
         'div',
         { className: 'profile-copy' },

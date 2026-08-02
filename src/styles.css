@@ -59,7 +59,6 @@ a {
 }
 
 .video-backdrop,
-.video-backdrop canvas,
 .video-backdrop video {
   position: absolute;
   inset: 0;
@@ -72,22 +71,10 @@ a {
   background: #050607;
 }
 
-.video-backdrop canvas,
 .video-backdrop video {
   object-fit: cover;
-}
-
-.video-backdrop canvas.is-hidden {
-  opacity: 0;
-}
-
-.video-backdrop video {
-  opacity: 0;
-  transition: opacity 800ms ease;
-}
-
-.video-backdrop video.is-visible {
-  opacity: 1;
+  filter: blur(3px) brightness(0.72) saturate(0.82);
+  transform: scale(1.015);
 }
 
 .hero::before {
@@ -98,7 +85,7 @@ a {
   background:
     radial-gradient(circle at 18% 30%, rgba(120, 241, 218, 0.18), transparent 30%),
     radial-gradient(circle at 82% 18%, rgba(189, 168, 255, 0.16), transparent 28%),
-    linear-gradient(90deg, rgba(5, 6, 7, 0.88), rgba(5, 6, 7, 0.36) 58%, rgba(5, 6, 7, 0.74));
+    linear-gradient(90deg, rgba(5, 6, 7, 0.9), rgba(5, 6, 7, 0.5) 58%, rgba(5, 6, 7, 0.78));
 }
 
 .hero::after {
