@@ -183,6 +183,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   min-height: 100vh;
   padding-top: 96px;
   padding-bottom: 90px;
@@ -198,27 +199,41 @@ a {
   text-transform: uppercase;
 }
 
-.hero h1 {
+.hero-title {
+  display: flex;
+  flex-direction: column;
   margin: 0;
-  max-width: 1020px;
-  font-size: clamp(110px, 10vw, 182px);
-  line-height: 0.9;
+  max-width: 1120px;
+  font-size: clamp(104px, 10.5vw, 184px);
+  line-height: 0.78;
   font-weight: 780;
+  letter-spacing: 0;
+}
+
+.hero-title span {
+  display: block;
+}
+
+.hero-title-outline {
+  margin-top: 0.06em;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(245, 245, 238, 0.92);
+  text-stroke: 2px rgba(245, 245, 238, 0.92);
 }
 
 .hero-copy {
-  max-width: 740px;
-  margin: 34px 0 0;
+  max-width: 620px;
+  margin: 36px 0 0;
   color: rgba(245, 245, 238, 0.76);
-  font-size: 27px;
-  line-height: 1.48;
+  font-size: 20px;
+  line-height: 1.62;
 }
 
 .hero-actions,
 .contact-actions {
   display: flex;
   gap: 14px;
-  margin-top: 42px;
+  margin-top: 32px;
 }
 
 .primary-action,

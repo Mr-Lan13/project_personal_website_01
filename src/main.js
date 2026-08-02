@@ -118,7 +118,12 @@ function Hero() {
       'div',
       { className: 'hero-inner page-shell' },
       h('p', { className: 'eyebrow' }, 'Visual Designer / AI Designer / Product Designer'),
-      h('h1', null, 'Lan'),
+      h(
+        'h1',
+        { className: 'hero-title' },
+        h('span', { className: 'hero-title-solid' }, 'Lan'),
+        h('span', { className: 'hero-title-outline' }, 'Design'),
+      ),
       h('p', { className: 'hero-copy' }, '用克制的视觉语言、AI 增强的创意流程和产品化思维，构建更清晰、更有质感的数字体验。'),
       h(
         'div',
