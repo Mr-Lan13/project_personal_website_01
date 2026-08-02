@@ -74,7 +74,6 @@ a {
   min-height: 100vh;
   overflow: hidden;
   isolation: isolate;
-  border-bottom: 1px solid var(--line);
 }
 
 .video-backdrop,
@@ -325,7 +324,6 @@ a {
 
 .section {
   padding: 150px 0;
-  border-bottom: 1px solid var(--line);
   background:
     linear-gradient(180deg, rgba(5, 6, 7, 0.7), rgba(5, 6, 7, 0.52));
 }
@@ -583,7 +581,6 @@ a {
   display: flex;
   align-items: center;
   min-height: 100vh;
-  border-top: 1px solid var(--line);
   background:
     radial-gradient(circle at 75% 55%, rgba(244, 212, 123, 0.12), transparent 26%),
     radial-gradient(circle at 24% 36%, rgba(120, 241, 218, 0.12), transparent 30%),
