@@ -8,6 +8,6 @@
 
 .grainient-container.grainient-fallback {
   background:
-    radial-gradient(circle at 18% 22%, rgba(120, 241, 218, 0.2), transparent 32%),
+    radial-gradient(circle at 18% 22%, rgba(63, 149, 138, 0.18), transparent 32%),
     linear-gradient(135deg, #050607, #152c32 52%, #050607);
 }

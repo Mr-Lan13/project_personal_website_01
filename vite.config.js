@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
   base: './',
@@ -9,6 +10,12 @@ export default defineConfig({
   },
   build: {
     minify: false,
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL('./index.html', import.meta.url)),
+        projects: fileURLToPath(new URL('./projects.html', import.meta.url)),
+      },
+    },
   },
   resolve: {
     alias: {
