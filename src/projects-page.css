@@ -76,6 +76,10 @@ a {
   align-items: center;
   gap: 10px;
   width: fit-content;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
 }
 
 .projects-back span {
@@ -103,6 +107,23 @@ a {
   background: rgba(78, 170, 156, 0.1);
   color: #d2e9e5;
   font-size: 14px;
+}
+
+.projects-back:hover,
+.projects-back:focus-visible {
+  color: var(--mint);
+}
+
+.projects-back:hover small,
+.projects-back:focus-visible small {
+  color: rgba(78, 170, 156, 0.78);
+}
+
+.projects-contact:hover,
+.projects-contact:focus-visible {
+  border-color: var(--mint);
+  background: var(--mint);
+  color: #06100e;
 }
 
 .projects-page-heading {

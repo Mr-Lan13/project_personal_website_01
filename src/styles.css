@@ -156,6 +156,17 @@ a {
   align-items: baseline;
   gap: 12px;
   width: fit-content;
+  transition: color 180ms ease;
+}
+
+.brand:hover,
+.brand:focus-visible {
+  color: var(--mint);
+}
+
+.brand:hover small,
+.brand:focus-visible small {
+  color: rgba(78, 170, 156, 0.78);
 }
 
 .brand span {
@@ -191,8 +202,9 @@ a {
     color 180ms ease;
 }
 
-.nav nav a:hover {
-  background: rgba(255, 255, 255, 0.08);
+.nav nav a:hover,
+.nav nav a:focus-visible {
+  background: rgba(78, 170, 156, 0.14);
   color: var(--text);
 }
 
@@ -208,6 +220,17 @@ a {
   background: rgba(78, 170, 156, 0.1);
   color: #d2e9e5;
   font-size: 14px;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.contact-button:hover,
+.contact-button:focus-visible {
+  border-color: var(--mint);
+  background: var(--mint);
+  color: #06100e;
 }
 
 .hero-inner {
@@ -308,6 +331,10 @@ a {
   border-radius: 8px;
   font-size: 15px;
   font-weight: 680;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
 }
 
 .primary-action {
@@ -319,6 +346,19 @@ a {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.055);
   color: var(--text);
+}
+
+.primary-action:hover,
+.primary-action:focus-visible {
+  background: var(--mint);
+  color: #06100e;
+}
+
+.secondary-action:hover,
+.secondary-action:focus-visible {
+  border-color: rgba(78, 170, 156, 0.72);
+  background: rgba(78, 170, 156, 0.16);
+  color: #d8efeb;
 }
 
 .scroll-note {
@@ -418,6 +458,17 @@ a {
   border: 1px solid var(--line);
   border-radius: 8px;
   color: rgba(245, 245, 238, 0.78);
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.contact-row a:hover,
+.contact-row a:focus-visible {
+  border-color: rgba(78, 170, 156, 0.66);
+  background: rgba(78, 170, 156, 0.14);
+  color: #d8efeb;
 }
 
 .metrics-grid {
@@ -563,6 +614,17 @@ a {
   color: #fff3c7;
   font-size: 14px;
   backdrop-filter: blur(18px);
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.floating-contact:hover,
+.floating-contact:focus-visible {
+  border-color: var(--mint);
+  background: var(--mint);
+  color: #06100e;
 }
 
 @media (max-width: 1280px) {
