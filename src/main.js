@@ -92,7 +92,6 @@ function Hero() {
     'section',
     { className: 'hero', id: 'top' },
     h(VideoBackdrop),
-    h(Nav),
     h(
       'div',
       { className: 'hero-inner page-shell' },
@@ -210,6 +209,7 @@ function App() {
   return h(
     React.Fragment,
     null,
+    h(Nav),
     h(Hero),
     h(
       'main',
