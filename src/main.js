@@ -12,6 +12,7 @@ import Palette from 'lucide-react/dist/esm/icons/palette.js';
 import Sparkles from 'lucide-react/dist/esm/icons/sparkles.js';
 import Workflow from 'lucide-react/dist/esm/icons/workflow.js';
 import Grainient from './Grainient.js';
+import GridMotion from './GridMotion.js';
 import './styles.css';
 
 const h = React.createElement;
@@ -28,18 +29,21 @@ const projects = [
     title: 'AI Design System',
     type: 'AI 产品 / 视觉系统',
     image: './assets/project-ai-system.png',
+    href: 'mailto:lan.design@email.com?subject=AI%20Design%20System',
     desc: '围绕智能生成、参数控制与多端一致性建立产品视觉语言。',
   },
   {
     title: 'Creative Campaign Lab',
     type: '品牌视觉 / 内容生成',
     image: './assets/project-campaign.png',
+    href: 'mailto:lan.design@email.com?subject=Creative%20Campaign%20Lab',
     desc: '将视觉策略、AIGC 资产生产和创意落地流程组合成高效工作台。',
   },
   {
     title: 'Product Experience Console',
     type: '产品设计 / 交互体验',
     image: './assets/project-product.png',
+    href: 'mailto:lan.design@email.com?subject=Product%20Experience%20Console',
     desc: '面向复杂信息场景，设计克制、清晰且适合长期使用的界面系统。',
   },
 ];
@@ -183,6 +187,20 @@ function Experience() {
 }
 
 function Projects() {
+  const gridItems = Array.from({ length: 28 }, (_, index) => {
+    const project = projects[index % projects.length];
+    return h(
+      'a',
+      {
+        className: 'grid-project-link',
+        href: project.href,
+        'aria-label': `联系我咨询 ${project.title}`,
+      },
+      h('img', { src: project.image, alt: `${project.title} 项目封面` }),
+      h('span', { className: 'grid-project-label' }, h('strong', null, project.title), h('span', null, project.type)),
+    );
+  });
+
   return h(
     'section',
     { className: 'section projects', id: 'projects' },
@@ -195,18 +213,7 @@ function Projects() {
         h('div', null, h('p', { className: 'section-kicker' }, 'Selected Work'), h('h2', null, '精选项目')),
         h('a', { href: 'mailto:lan.design@email.com' }, '获取完整作品集', Icon(MoveUpRight)),
       ),
-      h(
-        'div',
-        { className: 'project-grid' },
-        projects.map((project, index) =>
-          h(
-            'article',
-            { className: index === 0 ? 'project-card is-featured' : 'project-card', key: project.title },
-            h('img', { src: project.image, alt: `${project.title} 项目封面` }),
-            h('div', { className: 'project-meta' }, h('span', null, project.type), h('h3', null, project.title), h('p', null, project.desc)),
-          ),
-        ),
-      ),
+      h('div', { className: 'grid-motion-shell' }, h(GridMotion, { items: gridItems, gradientColor: '#071b1d' })),
     ),
   );
 }

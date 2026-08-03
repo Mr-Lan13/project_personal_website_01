@@ -1,0 +1,115 @@
+.grid-motion-root,
+.grid-motion-root .intro {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.grid-motion-root .intro {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-motion-root .intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(5, 6, 7, 0.08), rgba(5, 6, 7, 0.35));
+  z-index: 4;
+}
+
+.gridMotion-container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: 100%;
+  gap: 1rem;
+  flex: none;
+  width: 150vw;
+  height: 150vh;
+  transform: rotate(-15deg);
+  transform-origin: center center;
+}
+
+.grid-motion-root .row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+  will-change: transform;
+}
+
+.grid-motion-root .row__item {
+  position: relative;
+  min-width: 0;
+}
+
+.grid-motion-root .row__item-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(120, 241, 218, 0.22);
+  border-radius: 8px;
+  background: rgba(8, 12, 14, 0.9);
+  color: #f5f5ee;
+}
+
+.grid-project-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+}
+
+.grid-project-link img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.82) contrast(1.05);
+  transition: transform 500ms ease, filter 500ms ease;
+}
+
+.grid-project-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(5, 6, 7, 0.88));
+}
+
+.grid-project-link:hover img,
+.grid-project-link:focus-visible img {
+  transform: scale(1.06);
+  filter: saturate(1) contrast(1.08);
+}
+
+.grid-project-label {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  left: 16px;
+  z-index: 1;
+  display: grid;
+  gap: 4px;
+}
+
+.grid-project-label strong {
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+.grid-project-label span {
+  color: rgba(120, 241, 218, 0.86);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.grid-project-link:focus-visible {
+  outline: 2px solid var(--mint, #78f1da);
+  outline-offset: -3px;
+}
