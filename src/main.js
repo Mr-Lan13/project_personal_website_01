@@ -16,7 +16,7 @@ import './styles.css';
 const h = React.createElement;
 
 const metrics = [
-  { value: '6+', label: '精选项目占位' },
+  { value: '6+', label: '创意实验' },
   { value: '3', label: '核心设计方向' },
   { value: '0-1', label: '产品体验搭建' },
   { value: 'AI', label: '设计流程增强' },
@@ -107,7 +107,7 @@ function Nav() {
       'nav',
       { 'aria-label': '主导航' },
       h('a', { href: '#experience' }, '经历'),
-      h('a', { href: './projects.html' }, '项目'),
+      h('a', { href: './creative-lab.html' }, '创意实验室'),
       h('a', { href: '#strengths' }, '优势'),
       h('a', { href: '#contact' }, '联系'),
     ),
@@ -137,7 +137,7 @@ function Hero() {
         h(
           'div',
           { className: 'hero-actions' },
-          h('a', { className: 'primary-action', href: './projects.html' }, '查看作品', Icon(ArrowUpRight, 19)),
+          h('a', { className: 'primary-action', href: './creative-lab.html' }, '进入实验室', Icon(ArrowUpRight, 19)),
           h('a', { className: 'secondary-action', href: '#experience' }, '了解经历', Icon(ChevronRight)),
         ),
       ),

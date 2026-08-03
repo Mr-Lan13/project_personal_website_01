@@ -13,7 +13,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
-        projects: fileURLToPath(new URL('./projects.html', import.meta.url)),
+        creativeLab: fileURLToPath(new URL('./creative-lab.html', import.meta.url)),
       },
     },
   },
