@@ -203,18 +203,18 @@ function Projects() {
 
   return h(
     'section',
-    { className: 'section projects', id: 'projects' },
+    { className: 'section projects project-showcase', id: 'projects' },
     h(
       'div',
-      { className: 'page-shell' },
+      { className: 'page-shell project-showcase-overlay' },
       h(
         'div',
         { className: 'section-heading' },
         h('div', null, h('p', { className: 'section-kicker' }, 'Selected Work'), h('h2', null, '精选项目')),
         h('a', { href: 'mailto:lan.design@email.com' }, '获取完整作品集', Icon(MoveUpRight)),
       ),
-      h('div', { className: 'grid-motion-shell' }, h(GridMotion, { items: gridItems, gradientColor: '#071b1d' })),
     ),
+    h('div', { className: 'grid-motion-shell' }, h(GridMotion, { items: gridItems, gradientColor: '#071b1d' })),
   );
 }
 
