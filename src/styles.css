@@ -239,6 +239,10 @@ a {
   display: block;
 }
 
+.hero-title-solid {
+  transform: translateX(32px);
+}
+
 .hero-title-outline {
   position: absolute;
   top: 50%;
