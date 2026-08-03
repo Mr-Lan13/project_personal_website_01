@@ -16,9 +16,9 @@ const GridMotion = ({ items = [], gradientColor = '#050607' }) => {
     };
 
     const updateMotion = () => {
-      const maxMoveAmount = 300;
-      const baseDuration = 0.8;
-      const inertiaFactors = [0.6, 0.4, 0.3, 0.2];
+      const maxMoveAmount = 150;
+      const baseDuration = 1.25;
+      const inertiaFactors = [0.9, 0.75, 0.65, 0.55];
       const viewportWidth = Math.max(window.innerWidth, 1);
 
       rowRefs.current.forEach((row, index) => {
@@ -49,7 +49,7 @@ const GridMotion = ({ items = [], gradientColor = '#050607' }) => {
     { className: 'noscroll grid-motion-root' },
     h(
       'section',
-      { className: 'intro', style: { background: `radial-gradient(circle, ${gradientColor} 0%, transparent 100%)` } },
+      { className: 'intro', style: { '--grid-fill': gradientColor } },
       h(
         'div',
         { className: 'gridMotion-container' },
