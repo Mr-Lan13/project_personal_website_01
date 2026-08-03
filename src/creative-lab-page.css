@@ -42,16 +42,6 @@ a {
   z-index: 0;
 }
 
-.creative-lab-shade {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(69, 224, 204, 0.86), rgba(69, 224, 204, 0.22) 38%, rgba(5, 18, 16, 0.06) 76%),
-    linear-gradient(90deg, rgba(69, 224, 204, 0.9), rgba(69, 224, 204, 0.12) 54%, transparent 76%);
-}
-
 .creative-lab-back {
   position: absolute;
   top: 24px;
@@ -60,15 +50,16 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  height: 46px;
-  padding: 0 18px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
   border: 1px solid rgba(5, 18, 16, 0.5);
-  border-radius: 8px;
+  border-radius: 50%;
   background: #071311;
   color: #f5f5ee;
-  font-size: 14px;
-  font-weight: 680;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1;
   box-shadow: 0 10px 30px rgba(5, 18, 16, 0.16);
   transition:
     border-color 180ms ease,
@@ -107,7 +98,7 @@ a {
   font-size: 82px;
   line-height: 0.96;
   letter-spacing: 0;
-  color: #051411;
+  color: #f5f5ee;
 }
 
 .creative-lab-heading > span {

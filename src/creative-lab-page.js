@@ -1,15 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left.js';
 import GridMotion from './GridMotion.js';
 import projects from './project-data.js';
 import './creative-lab-page.css';
 
 const h = React.createElement;
-
-function Icon(IconComponent, size = 18) {
-  return h(IconComponent, { size, 'aria-hidden': true });
-}
 
 function CreativeLabPage() {
   const gridItems = Array.from({ length: 28 }, (_, index) => {
@@ -31,8 +26,7 @@ function CreativeLabPage() {
     'main',
     { className: 'creative-lab-page' },
     h('div', { className: 'creative-lab-grid', 'aria-hidden': false }, h(GridMotion, { items: gridItems, gradientColor: '#45e0cc' })),
-    h('div', { className: 'creative-lab-shade', 'aria-hidden': true }),
-    h('a', { className: 'creative-lab-back', href: './index.html', 'aria-label': '返回首页' }, Icon(ArrowLeft), h('span', null, '返回首页')),
+    h('a', { className: 'creative-lab-back', href: './index.html', 'aria-label': '返回首页' }, '←'),
     h(
       'section',
       { className: 'creative-lab-heading' },
