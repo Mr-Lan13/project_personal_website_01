@@ -66,9 +66,37 @@ function VideoBackdrop() {
 }
 
 function Nav() {
+  const [isTextOnly, setIsTextOnly] = React.useState(false);
+
+  React.useEffect(() => {
+    let animationFrame = 0;
+
+    const updateNavMode = () => {
+      animationFrame = 0;
+      const hero = document.querySelector('.hero');
+      setIsTextOnly(Boolean(hero && hero.getBoundingClientRect().bottom <= 112));
+    };
+
+    const scheduleUpdate = () => {
+      if (!animationFrame) {
+        animationFrame = window.requestAnimationFrame(updateNavMode);
+      }
+    };
+
+    updateNavMode();
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+
+    return () => {
+      window.removeEventListener('scroll', scheduleUpdate);
+      window.removeEventListener('resize', scheduleUpdate);
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
   return h(
     'header',
-    { className: 'nav' },
+    { className: `nav${isTextOnly ? ' is-text-only' : ''}` },
     h(
       'a',
       { className: 'brand', href: '#top', 'aria-label': 'Lan Portfolio 首页' },

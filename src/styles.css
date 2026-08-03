@@ -149,6 +149,14 @@ a {
   background: rgba(5, 6, 7, 0.62);
   backdrop-filter: blur(22px);
   transform: translateX(-50%);
+  transition:
+    top 220ms ease,
+    height 220ms ease,
+    padding 220ms ease,
+    border-color 220ms ease,
+    border-radius 220ms ease,
+    background 220ms ease,
+    backdrop-filter 220ms ease;
 }
 
 .brand {
@@ -179,6 +187,9 @@ a {
   color: var(--soft);
   font-size: 12px;
   text-transform: uppercase;
+  transition:
+    opacity 180ms ease,
+    transform 220ms ease;
 }
 
 .nav nav {
@@ -188,6 +199,10 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.045);
+  transition:
+    padding 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease;
 }
 
 .nav nav a {
@@ -231,6 +246,60 @@ a {
   border-color: var(--mint);
   background: var(--mint);
   color: #06100e;
+}
+
+.nav.is-text-only {
+  top: 12px;
+  height: 52px;
+  padding-right: 4px;
+  padding-left: 4px;
+  border-color: transparent;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: blur(0);
+}
+
+.nav.is-text-only .brand small {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+.nav.is-text-only nav {
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+}
+
+.nav.is-text-only nav a {
+  background: transparent;
+  text-shadow: 0 1px 14px rgba(5, 6, 7, 0.9);
+}
+
+.nav.is-text-only nav a:hover,
+.nav.is-text-only nav a:focus-visible {
+  background: transparent;
+  color: var(--mint);
+}
+
+.nav.is-text-only .contact-button {
+  height: 36px;
+  padding: 0 14px;
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+  text-shadow: 0 1px 14px rgba(5, 6, 7, 0.9);
+}
+
+.nav.is-text-only .contact-button svg {
+  width: 0;
+  opacity: 0;
+}
+
+.nav.is-text-only .contact-button:hover,
+.nav.is-text-only .contact-button:focus-visible {
+  border-color: transparent;
+  background: transparent;
+  color: var(--mint);
 }
 
 .hero-inner {
