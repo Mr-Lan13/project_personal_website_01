@@ -790,7 +790,7 @@ a {
   grid-column: 2;
   grid-row: 2;
   align-self: end;
-  color: rgba(5, 7, 8, 0.54);
+  color: rgba(245, 245, 238, 0.56);
   font-size: 12px;
   line-height: 1;
   font-weight: 680;
@@ -804,7 +804,7 @@ a {
   grid-row: 1;
   max-width: 190px;
   margin: 0;
-  color: rgba(5, 7, 8, 0.84);
+  color: rgba(245, 245, 238, 0.92);
   font-size: 24px;
   font-weight: 720;
   line-height: 1.05;
@@ -821,7 +821,7 @@ a {
   align-self: end;
   width: 72px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(5, 7, 8, 0.36));
+  background: linear-gradient(90deg, transparent, rgba(245, 245, 238, 0.32));
   transform: translateY(-18px);
 }
 
@@ -855,6 +855,18 @@ a {
     radial-gradient(circle at 18% 20%, #ffffff, transparent 34%),
     linear-gradient(135deg, #f5f5ee, #bfc1b8 78%),
     #f5f5ee;
+}
+
+.palette-card:nth-child(3) strong {
+  color: rgba(5, 7, 8, 0.54);
+}
+
+.palette-card:nth-child(3) span {
+  color: rgba(5, 7, 8, 0.84);
+}
+
+.palette-card:nth-child(3)::after {
+  background: linear-gradient(90deg, transparent, rgba(5, 7, 8, 0.36));
 }
 
 .palette-card:nth-child(4) i {
