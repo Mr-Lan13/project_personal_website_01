@@ -900,18 +900,16 @@ a {
   top: 54%;
   left: 50%;
   z-index: 0;
-  width: max(100vw, 2200px);
-  height: 92px;
+  width: 100vw;
+  height: 5px;
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
 
 .strengths::before {
-  opacity: 0.76;
-  background:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 2200 92' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 46H566L586 46L606 46L624 26L642 68L658 46L680 46L698 16L716 78L734 46H786L804 46L820 38L836 54L852 46H884L902 32L920 61L938 46H2200' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round' stroke-opacity='0.92'/%3E%3C/svg%3E")
-    center / 100% 100% no-repeat;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.26));
+  border-radius: 999px;
+  background: rgba(245, 245, 238, 0.92);
+  box-shadow: 0 0 14px rgba(245, 245, 238, 0.22);
 }
 
 .strength-grid {
