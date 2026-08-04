@@ -745,11 +745,11 @@ a {
   --swatch: var(--mint);
   position: relative;
   display: grid;
-  grid-template-columns: minmax(112px, 0.92fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   align-content: center;
   gap: 8px 20px;
   min-height: 0;
-  padding: 12px 20px 12px 12px;
+  padding: 20px 22px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -759,20 +759,17 @@ a {
 }
 
 .palette-card i {
-  position: relative;
-  z-index: 1;
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  width: 100%;
-  height: 100%;
-  min-height: 72px;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
-  border: 1px solid rgba(245, 245, 238, 0.22);
-  border-radius: 6px;
+  border: 0;
+  border-radius: inherit;
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--swatch) 92%, #ffffff 0%), color-mix(in srgb, var(--swatch) 46%, #050708)),
+    radial-gradient(circle at 20% 18%, color-mix(in srgb, var(--swatch) 92%, #ffffff 8%), transparent 34%),
+    linear-gradient(135deg, color-mix(in srgb, var(--swatch) 96%, #ffffff 0%), color-mix(in srgb, var(--swatch) 72%, #050708)),
     var(--swatch);
-  box-shadow: 0 0 34px color-mix(in srgb, var(--swatch) 46%, transparent);
+  box-shadow: inset 0 0 42px rgba(5, 7, 8, 0.18), 0 0 34px color-mix(in srgb, var(--swatch) 46%, transparent);
 }
 
 .palette-card i::after {
@@ -780,17 +777,19 @@ a {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(5, 7, 8, 0.08), rgba(5, 7, 8, 0.34)),
-    repeating-linear-gradient(135deg, rgba(245, 245, 238, 0.12) 0 1px, transparent 1px 12px);
-  opacity: 0.52;
+    linear-gradient(90deg, rgba(5, 7, 8, 0.08), rgba(5, 7, 8, 0.22)),
+    repeating-linear-gradient(135deg, rgba(245, 245, 238, 0.12) 0 1px, transparent 1px 13px);
+  opacity: 0.38;
 }
 
 .palette-card strong {
+  position: relative;
+  z-index: 1;
   display: block;
   grid-column: 2;
   grid-row: 2;
   align-self: end;
-  color: rgba(245, 245, 238, 0.46);
+  color: rgba(5, 7, 8, 0.54);
   font-size: 12px;
   line-height: 1;
   font-weight: 680;
@@ -798,11 +797,13 @@ a {
 }
 
 .palette-card span {
+  position: relative;
+  z-index: 1;
   grid-column: 2;
   grid-row: 1;
   max-width: 190px;
   margin: 0;
-  color: rgba(245, 245, 238, 0.9);
+  color: rgba(5, 7, 8, 0.84);
   font-size: 24px;
   font-weight: 720;
   line-height: 1.05;
@@ -811,21 +812,34 @@ a {
 
 .palette-card::after {
   content: '';
+  position: relative;
+  z-index: 1;
   grid-column: 2;
   grid-row: 2;
   justify-self: start;
   align-self: end;
   width: 72px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--swatch) 72%, rgba(245, 245, 238, 0.2)));
+  background: linear-gradient(90deg, transparent, rgba(5, 7, 8, 0.36));
   transform: translateY(-18px);
 }
 
 .palette-card:nth-child(2) i {
-  border: 1px solid rgba(245, 245, 238, 0.2);
   background:
-    radial-gradient(circle at 28% 24%, rgba(78, 170, 156, 0.18), transparent 36%),
+    radial-gradient(circle at 28% 24%, rgba(78, 170, 156, 0.26), transparent 42%),
     linear-gradient(135deg, #141817, #050708 72%);
+}
+
+.palette-card:nth-child(2) strong {
+  color: rgba(245, 245, 238, 0.48);
+}
+
+.palette-card:nth-child(2) span {
+  color: rgba(245, 245, 238, 0.9);
+}
+
+.palette-card:nth-child(2)::after {
+  background: linear-gradient(90deg, transparent, rgba(245, 245, 238, 0.28));
 }
 
 .palette-card:nth-child(3) {
@@ -837,8 +851,16 @@ a {
 
 .palette-card:nth-child(3) i {
   background:
-    linear-gradient(135deg, #f5f5ee, #a8aaa0 78%),
+    radial-gradient(circle at 18% 20%, #ffffff, transparent 34%),
+    linear-gradient(135deg, #f5f5ee, #bfc1b8 78%),
     #f5f5ee;
+}
+
+.palette-card:nth-child(4) i {
+  background:
+    radial-gradient(circle at 18% 18%, #ded5ff, transparent 34%),
+    linear-gradient(135deg, #bda8ff, #5c507a 82%),
+    #bda8ff;
 }
 
 .section-heading {
