@@ -491,14 +491,13 @@ a {
 
 .section-intro-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(360px, 0.75fr);
-  gap: 64px;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 34px;
 }
 
 .section-intro-title {
-  max-width: 980px;
+  max-width: 1040px;
 }
 
 .profile-summary {
@@ -735,38 +734,86 @@ a {
   color: #d8efeb;
 }
 
-.metrics-grid {
+.palette-grid {
   display: grid;
   grid-template-rows: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  gap: 12px;
   margin: 0;
 }
 
-.metric {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 28px;
+.palette-card {
+  --swatch: var(--mint);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-content: center;
+  gap: 8px 18px;
   min-height: 0;
-  padding: 16px 22px;
+  padding: 18px 20px 18px 24px;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--panel);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--swatch) 16%, transparent), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
+    var(--panel);
 }
 
-.metric strong {
+.palette-card i {
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 14px;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, transparent, var(--swatch) 22%, var(--swatch) 78%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--swatch) 58%, transparent);
+}
+
+.palette-card strong {
   display: block;
-  font-size: 42px;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  color: rgba(245, 245, 238, 0.46);
+  font-size: 12px;
   line-height: 1;
+  font-weight: 680;
+  text-align: right;
 }
 
-.metric span {
-  max-width: 150px;
+.palette-card span {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  max-width: 190px;
   margin: 0;
-  color: var(--soft);
-  font-size: 14px;
-  line-height: 1.45;
-  text-align: right;
+  color: rgba(245, 245, 238, 0.9);
+  font-size: 24px;
+  font-weight: 720;
+  line-height: 1.05;
+  text-align: left;
+}
+
+.palette-card::after {
+  content: '';
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  width: 58px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--swatch) 72%, rgba(245, 245, 238, 0.2)));
+}
+
+.palette-card:nth-child(2) i {
+  border: 1px solid rgba(245, 245, 238, 0.18);
+  background: linear-gradient(180deg, transparent, #1b2422 20%, #050708 78%, transparent);
+}
+
+.palette-card:nth-child(3) {
+  background:
+    linear-gradient(90deg, rgba(245, 245, 238, 0.08), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018)),
+    var(--panel);
 }
 
 .section-heading {
@@ -1022,8 +1069,12 @@ a {
     grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
   }
 
-  .metric strong {
-    font-size: 38px;
+  .palette-card strong {
+    font-size: 11px;
+  }
+
+  .palette-card span {
+    font-size: 21px;
   }
 
   .strength-grid {

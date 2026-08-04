@@ -15,11 +15,11 @@ import './styles.css';
 
 const h = React.createElement;
 
-const metrics = [
-  { value: '6+', label: '创意实验' },
-  { value: '3', label: '核心设计方向' },
-  { value: '0-1', label: '产品体验搭建' },
-  { value: 'AI', label: '设计流程增强' },
+const paletteItems = [
+  { value: '#4EAA9C', label: '主青色' },
+  { value: '#050708', label: '深黑底' },
+  { value: '#F5F5EE', label: '暖白字' },
+  { value: '#BDA8FF', label: '柔紫灰' },
 ];
 
 const strengths = [
@@ -157,21 +157,6 @@ function Experience() {
         'div',
         { className: 'section-intro-row' },
         h('div', { className: 'section-intro-title' }, h('p', { className: 'section-kicker' }, 'Profile'), h('h2', null, '在视觉表达、AI 生成与产品体验之间建立清晰秩序。')),
-        h(
-          'div',
-          { className: 'profile-summary' },
-          h(
-            'p',
-            null,
-            '我是 Lan，视觉设计师 / AI 设计师 / 产品设计师。首版页面先以可替换内容承载你的个人经历：后续拿到简历、项目截图和参考站点后，可以继续细化真实履历、项目叙事、视觉资产和动效节奏。',
-          ),
-          h(
-            'div',
-            { className: 'contact-row' },
-            h('a', { href: 'mailto:lan.design@email.com' }, Icon(Mail), 'lan.design@email.com'),
-            h('a', { href: '#contact' }, Icon(MessageCircle), '预约沟通'),
-          ),
-        ),
       ),
       h(
         'div',
@@ -190,8 +175,16 @@ function Experience() {
         ),
         h(
           'div',
-          { className: 'metrics-grid' },
-          metrics.map((item) => h('div', { className: 'metric', key: item.label }, h('strong', null, item.value), h('span', null, item.label))),
+          { className: 'palette-grid' },
+          paletteItems.map((item) =>
+            h(
+              'div',
+              { className: 'palette-card', key: item.label },
+              h('i', { style: { '--swatch': item.value } }),
+              h('strong', null, item.value),
+              h('span', null, item.label),
+            ),
+          ),
         ),
       ),
     ),

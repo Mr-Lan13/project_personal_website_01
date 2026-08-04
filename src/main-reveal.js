@@ -8,7 +8,7 @@ const revealGroups = [
     step: 75,
   },
   {
-    selector: '.experience .section-kicker, .experience h2, .profile-summary > p, .contact-row > a, .portrait-frame, .metric',
+    selector: '.experience .section-kicker, .experience h2, .portrait-frame, .palette-card',
     effect: 'reveal-up',
     step: 55,
   },
