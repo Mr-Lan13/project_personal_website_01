@@ -626,6 +626,7 @@ a {
 
 .portrait-frame.reveal-item.is-visible .atelier-messages p:nth-child(2) {
   animation-delay: 1840ms;
+  --atelier-message-offset: 34px;
 }
 
 .portrait-frame.reveal-item.is-visible .atelier-messages p:nth-child(3) {
@@ -634,7 +635,7 @@ a {
 
 .portrait-frame.reveal-complete .atelier-messages p {
   opacity: 1;
-  transform: translateX(244px);
+  transform: translateX(calc(244px + var(--atelier-message-offset, 0px)));
   filter: blur(0);
 }
 
@@ -664,19 +665,19 @@ a {
 
   40% {
     opacity: 0;
-    transform: translateX(98px);
+    transform: translateX(calc(98px + var(--atelier-message-offset, 0px) * 0.4));
     filter: blur(12px);
   }
 
   72% {
     opacity: 0.58;
-    transform: translateX(196px);
+    transform: translateX(calc(196px + var(--atelier-message-offset, 0px) * 0.76));
     filter: blur(5px);
   }
 
   100% {
     opacity: 1;
-    transform: translateX(244px);
+    transform: translateX(calc(244px + var(--atelier-message-offset, 0px)));
     filter: blur(0);
   }
 }
