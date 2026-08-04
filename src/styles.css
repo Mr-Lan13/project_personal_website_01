@@ -560,8 +560,117 @@ a {
   pointer-events: none;
 }
 
+.portrait-frame.reveal-item::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+.portrait-frame.reveal-item.is-visible::after {
+  animation: atelier-core-slide 1100ms cubic-bezier(0.2, 0.72, 0.18, 1) 240ms both;
+}
+
+.portrait-frame.reveal-complete::after {
+  opacity: 1;
+  transform: translate(-94%, -50%) scale(1);
+}
+
 .portrait-frame img {
   display: none;
+}
+
+.atelier-messages {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  display: grid;
+  gap: 18px;
+  width: min(280px, 36%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.atelier-messages p {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(245, 245, 238, 0.88);
+  font-size: 14px;
+  font-weight: 640;
+  line-height: 1.35;
+  text-shadow: 0 0 18px rgba(4, 7, 8, 0.82);
+  opacity: 0;
+  transform: translateX(0);
+}
+
+.atelier-messages b {
+  color: var(--mint);
+  font-size: 12px;
+  font-weight: 760;
+  text-shadow: 0 0 16px rgba(78, 170, 156, 0.7);
+}
+
+.portrait-frame.reveal-item.is-visible .atelier-messages p {
+  animation: atelier-message-slide 980ms cubic-bezier(0.22, 0.78, 0.2, 1) both;
+}
+
+.portrait-frame.reveal-item.is-visible .atelier-messages p:nth-child(1) {
+  animation-delay: 1280ms;
+}
+
+.portrait-frame.reveal-item.is-visible .atelier-messages p:nth-child(2) {
+  animation-delay: 1840ms;
+}
+
+.portrait-frame.reveal-item.is-visible .atelier-messages p:nth-child(3) {
+  animation-delay: 2400ms;
+}
+
+.portrait-frame.reveal-complete .atelier-messages p {
+  opacity: 1;
+  transform: translateX(190px);
+}
+
+@keyframes atelier-core-slide {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+
+  38% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-94%, -50%) scale(1);
+  }
+}
+
+@keyframes atelier-message-slide {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+    filter: blur(8px);
+  }
+
+  42% {
+    opacity: 1;
+    transform: translateX(72px);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(190px);
+    filter: blur(0);
+  }
 }
 
 .section-intro-title h2,

@@ -176,7 +176,18 @@ function Experience() {
       h(
         'div',
         { className: 'experience-showcase' },
-        h('div', { className: 'portrait-frame' }, h('img', { src: './assets/portrait-lan.png', alt: 'Lan 人像' })),
+        h(
+          'div',
+          { className: 'portrait-frame' },
+          h('img', { src: './assets/portrait-lan.png', alt: 'Lan 人像' }),
+          h(
+            'div',
+            { className: 'atelier-messages', 'aria-label': '设计流程消息' },
+            h('p', null, h('b', null, '01'), '视觉语言校准'),
+            h('p', null, h('b', null, '02'), 'AI 生成资产筛选'),
+            h('p', null, h('b', null, '03'), '产品体验落地'),
+          ),
+        ),
         h(
           'div',
           { className: 'metrics-grid' },
