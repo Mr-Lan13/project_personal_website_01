@@ -4,3 +4,6 @@ outputs/
 work/npm-cache/
 .vite/
 *.log
+.env
+.env.*
+!.env.example

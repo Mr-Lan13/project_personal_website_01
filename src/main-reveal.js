@@ -13,7 +13,7 @@ const revealGroups = [
     step: 55,
   },
   {
-    selector: '.strengths .section-kicker, .strengths h2, .strength-card',
+    selector: '.strengths .section-kicker, .strengths h2, .strength-lede, .click-stack-shell',
     effect: 'reveal-up',
     step: 70,
   },

@@ -10,6 +10,7 @@ import MessageCircle from 'lucide-react/dist/esm/icons/message-circle.js';
 import Palette from 'lucide-react/dist/esm/icons/palette.js';
 import Sparkles from 'lucide-react/dist/esm/icons/sparkles.js';
 import Workflow from 'lucide-react/dist/esm/icons/workflow.js';
+import ClickStack from './ClickStack.js';
 import Grainient from './Grainient.js';
 import './styles.css';
 
@@ -198,21 +199,18 @@ function Strengths() {
     h(
       'div',
       { className: 'page-shell' },
-      h('div', { className: 'section-heading strength-heading' }, h('div', null, h('p', { className: 'section-kicker' }, 'Capability'), h('h2', null, '个人优势'))),
       h(
         'div',
-        { className: 'strength-grid' },
-        strengths.map((item, index) =>
-          h(
-            'article',
-            { className: 'strength-card', key: item.title },
-            h('span', { className: 'strength-number' }, String(index + 1).padStart(2, '0')),
-            h('div', { className: 'icon-box' }, Icon(item.icon, 24)),
-            h('h3', null, item.title),
-            h('p', null, item.body),
-          ),
+        { className: 'section-heading strength-heading' },
+        h(
+          'div',
+          null,
+          h('p', { className: 'section-kicker' }, 'Capability'),
+          h('h2', null, '个人优势'),
+          h('p', { className: 'strength-lede' }, '点击卡片或右侧序号，查看 Lan 的 01 / 02 / 03 / 04 核心能力。'),
         ),
       ),
+      h(ClickStack, { items: strengths, renderIcon: Icon }),
     ),
   );
 }
