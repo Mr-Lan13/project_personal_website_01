@@ -233,11 +233,7 @@ a {
     0 0 calc(10px + var(--lab-glow, 0) * 56px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 1)),
     0 0 calc(var(--lab-glow, 0) * 172px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.98)),
     0 0 calc(var(--lab-glow, 0) * 264px) rgba(245, 245, 238, calc(var(--lab-glow, 0) * 0.34));
-  box-shadow:
-    0 0 calc(var(--lab-glow, 0) * 108px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 1)),
-    0 0 calc(var(--lab-glow, 0) * 248px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.72)),
-    0 0 calc(var(--lab-glow, 0) * 380px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.4)),
-    inset 0 0 calc(var(--lab-glow, 0) * 52px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.46));
+  box-shadow: none;
   transform: translateY(calc(var(--lab-glow, 0) * -1px)) scale(calc(1 + var(--lab-glow, 0) * 0.06));
   transition:
     background 180ms ease,
@@ -265,16 +261,12 @@ a {
 }
 
 .nav nav a.creative-lab-link::after {
-  inset: -46px -88px;
+  inset: -42px -78px;
   border: 0;
   border-radius: 999px;
-  background:
-    linear-gradient(90deg, transparent 8%, rgba(245, 245, 238, calc(var(--lab-glow, 0) * 0.42)) 48%, rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.82)) 50%, rgba(245, 245, 238, calc(var(--lab-glow, 0) * 0.32)) 52%, transparent 92%),
-    linear-gradient(23deg, transparent 20%, rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.48)) 49%, rgba(245, 245, 238, calc(var(--lab-glow, 0) * 0.2)) 50%, transparent 78%),
-    linear-gradient(-21deg, transparent 22%, rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.42)) 49%, rgba(245, 245, 238, calc(var(--lab-glow, 0) * 0.18)) 50%, transparent 78%),
-    radial-gradient(circle, rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.34)), transparent 62%);
-  opacity: calc(var(--lab-glow, 0) * 0.9);
-  filter: blur(calc(var(--lab-glow, 0) * 0.7px));
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 118' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cpath d='M36 59H118' stroke='%23f5f5ee' stroke-opacity='.42' stroke-width='1.6'/%3E%3Cpath d='M182 59H264' stroke='%234eaa9c' stroke-opacity='.68' stroke-width='2'/%3E%3Cpath d='M66 36L126 53' stroke='%234eaa9c' stroke-opacity='.48' stroke-width='1.6'/%3E%3Cpath d='M174 53L236 34' stroke='%23f5f5ee' stroke-opacity='.3' stroke-width='1.3'/%3E%3Cpath d='M70 84L126 65' stroke='%23f5f5ee' stroke-opacity='.26' stroke-width='1.2'/%3E%3Cpath d='M174 65L232 84' stroke='%234eaa9c' stroke-opacity='.45' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  opacity: calc(var(--lab-glow, 0) * 0.96);
+  filter: drop-shadow(0 0 calc(var(--lab-glow, 0) * 12px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.72)));
   mask-image: radial-gradient(ellipse at center, black 0 46%, transparent 76%);
   animation: lab-rays-breathe 2200ms ease-in-out infinite;
 }
@@ -345,10 +337,7 @@ a {
     0 0 calc(14px + var(--lab-glow, 0) * 82px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 1)),
     0 0 calc(var(--lab-glow, 0) * 256px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 1)),
     0 0 calc(var(--lab-glow, 0) * 380px) rgba(245, 245, 238, calc(var(--lab-glow, 0) * 0.34));
-  box-shadow:
-    0 0 calc(var(--lab-glow, 0) * 144px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.96)),
-    0 0 calc(var(--lab-glow, 0) * 296px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.68)),
-    0 0 calc(var(--lab-glow, 0) * 480px) rgba(78, 170, 156, calc(var(--lab-glow, 0) * 0.34));
+  box-shadow: none;
 }
 
 .nav.is-text-only nav a:hover,
