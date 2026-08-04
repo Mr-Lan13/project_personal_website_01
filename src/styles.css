@@ -662,16 +662,16 @@ a {
     filter: blur(12px);
   }
 
-  36% {
-    opacity: 0.38;
-    transform: translateX(78px);
-    filter: blur(7px);
+  40% {
+    opacity: 0;
+    transform: translateX(98px);
+    filter: blur(12px);
   }
 
   72% {
-    opacity: 0.82;
-    transform: translateX(188px);
-    filter: blur(2px);
+    opacity: 0.58;
+    transform: translateX(196px);
+    filter: blur(5px);
   }
 
   100% {
