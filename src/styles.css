@@ -351,7 +351,7 @@ a {
 .hero-title-outline {
   position: absolute;
   top: 50%;
-  right: calc((100vw - 100%) / -2 - 22px);
+  right: calc((100vw - 100%) / -2 - 48px);
   font-size: clamp(82px, 7.5vw, 132px);
   line-height: 0.8;
   writing-mode: vertical-rl;
@@ -374,22 +374,25 @@ a {
 
 .hero-title-outline::before {
   top: 2%;
-  width: 4px;
+  width: 8px;
   height: 96%;
-  background: linear-gradient(180deg, rgba(78, 170, 156, 0.18), var(--mint) 16%, var(--mint) 88%, rgba(78, 170, 156, 0.34));
-  box-shadow: 0 0 20px rgba(78, 170, 156, 0.62);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(78, 170, 156, 0.2), var(--mint) 14%, var(--mint) 90%, rgba(78, 170, 156, 0.38));
+  box-shadow: 0 0 24px rgba(78, 170, 156, 0.72);
   transform: translateX(-50%) scaleY(var(--hero-arrow-progress, 0));
   transform-origin: top;
+  transition: opacity 140ms ease;
 }
 
 .hero-title-outline::after {
   top: var(--hero-arrow-y, 2%);
-  width: 17px;
-  height: 17px;
-  border-right: 5px solid var(--mint);
-  border-bottom: 5px solid var(--mint);
-  filter: drop-shadow(0 0 10px rgba(78, 170, 156, 0.78));
+  width: 26px;
+  height: 26px;
+  border-right: 10px solid var(--mint);
+  border-bottom: 10px solid var(--mint);
+  filter: drop-shadow(0 0 14px rgba(78, 170, 156, 0.82));
   transform: translate(-50%, -100%) rotate(45deg);
+  transition: opacity 140ms ease;
 }
 
 .hero-details {

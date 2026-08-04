@@ -88,13 +88,15 @@ function setupHeroDesignArrow() {
 
   let animationFrame = 0;
   let hasScrollIntent = window.scrollY > 2;
+  let arrowRevealProgress = hasScrollIntent ? 1 : 0;
+  let arrowRevealFrame = 0;
 
   const updateArrow = () => {
     animationFrame = 0;
     const heroHeight = Math.max(hero.offsetHeight, 1);
     const progress = Math.min(Math.max(window.scrollY / (heroHeight * 0.86), 0), 1);
-    const visualProgress = hasScrollIntent ? Math.max(progress, 0.08) : progress;
-    const opacity = hasScrollIntent ? Math.max(Math.min(progress * 5, 1), 0.9) : 0;
+    const visualProgress = hasScrollIntent ? Math.max(progress, arrowRevealProgress) : progress;
+    const opacity = hasScrollIntent ? Math.max(Math.min(progress * 5, 1), 0.95) : 0;
 
     designTitle.style.setProperty('--hero-arrow-progress', visualProgress.toFixed(3));
     designTitle.style.setProperty('--hero-arrow-y', `${2 + visualProgress * 96}%`);
@@ -106,8 +108,34 @@ function setupHeroDesignArrow() {
   };
 
   const activateArrow = () => {
+    if (hasScrollIntent && arrowRevealProgress >= 1) {
+      return;
+    }
+
     hasScrollIntent = true;
-    scheduleArrowUpdate();
+    if (arrowRevealFrame) {
+      window.cancelAnimationFrame(arrowRevealFrame);
+    }
+
+    const startTime = performance.now();
+    const duration = 300;
+    const easeOut = (value) => 1 - Math.pow(1 - value, 3);
+
+    const animateArrowReveal = (time) => {
+      const elapsed = Math.min((time - startTime) / duration, 1);
+      arrowRevealProgress = easeOut(elapsed);
+      scheduleArrowUpdate();
+
+      if (elapsed < 1) {
+        arrowRevealFrame = window.requestAnimationFrame(animateArrowReveal);
+      } else {
+        arrowRevealProgress = 1;
+        arrowRevealFrame = 0;
+        scheduleArrowUpdate();
+      }
+    };
+
+    arrowRevealFrame = window.requestAnimationFrame(animateArrowReveal);
   };
 
   updateArrow();
