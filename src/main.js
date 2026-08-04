@@ -68,6 +68,7 @@ function VideoBackdrop() {
 
 function Nav() {
   const [isTextOnly, setIsTextOnly] = React.useState(false);
+  const [labGlow, setLabGlow] = React.useState(0);
 
   React.useEffect(() => {
     let animationFrame = 0;
@@ -75,7 +76,11 @@ function Nav() {
     const updateNavMode = () => {
       animationFrame = 0;
       const hero = document.querySelector('.hero');
+      const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      const progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
+
       setIsTextOnly(Boolean(hero && hero.getBoundingClientRect().bottom <= 112));
+      setLabGlow(Math.pow(progress, 1.25));
     };
 
     const scheduleUpdate = () => {
@@ -97,7 +102,7 @@ function Nav() {
 
   return h(
     'header',
-    { className: `nav${isTextOnly ? ' is-text-only' : ''}` },
+    { className: `nav${isTextOnly ? ' is-text-only' : ''}`, style: { '--lab-glow': labGlow.toFixed(3) } },
     h(
       'a',
       { className: 'brand', href: '#top', 'aria-label': 'Lan Portfolio 首页' },
@@ -108,9 +113,9 @@ function Nav() {
       'nav',
       { 'aria-label': '主导航' },
       h('a', { href: '#experience' }, '经历'),
-      h('a', { href: './creative-lab.html' }, '创意实验室'),
       h('a', { href: '#strengths' }, '优势'),
       h('a', { href: '#contact' }, '联系'),
+      h('a', { className: 'creative-lab-link', href: './creative-lab.html' }, '创意实验室'),
     ),
     h('a', { className: 'contact-button', href: 'mailto:lan.design@email.com' }, Icon(Mail), '联系我'),
   );
