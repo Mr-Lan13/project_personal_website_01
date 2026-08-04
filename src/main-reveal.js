@@ -87,22 +87,31 @@ function setupHeroDesignArrow() {
   }
 
   let animationFrame = 0;
+  let hasScrollIntent = window.scrollY > 2;
 
   const updateArrow = () => {
     animationFrame = 0;
     const heroHeight = Math.max(hero.offsetHeight, 1);
     const progress = Math.min(Math.max(window.scrollY / (heroHeight * 0.86), 0), 1);
+    const visualProgress = hasScrollIntent ? Math.max(progress, 0.08) : progress;
+    const opacity = hasScrollIntent ? Math.max(Math.min(progress * 5, 1), 0.9) : 0;
 
-    designTitle.style.setProperty('--hero-arrow-progress', progress.toFixed(3));
-    designTitle.style.setProperty('--hero-arrow-y', `${2 + progress * 96}%`);
-    designTitle.style.setProperty('--hero-arrow-opacity', Math.min(progress * 5, 1).toFixed(3));
+    designTitle.style.setProperty('--hero-arrow-progress', visualProgress.toFixed(3));
+    designTitle.style.setProperty('--hero-arrow-y', `${2 + visualProgress * 96}%`);
+    designTitle.style.setProperty('--hero-arrow-opacity', opacity.toFixed(3));
   };
 
   const scheduleArrowUpdate = () => {
     if (!animationFrame) animationFrame = window.requestAnimationFrame(updateArrow);
   };
 
+  const activateArrow = () => {
+    hasScrollIntent = true;
+    scheduleArrowUpdate();
+  };
+
   updateArrow();
+  window.addEventListener('wheel', activateArrow, { passive: true });
   window.addEventListener('scroll', scheduleArrowUpdate, { passive: true });
   window.addEventListener('resize', scheduleArrowUpdate);
 }

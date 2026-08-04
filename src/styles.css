@@ -351,7 +351,7 @@ a {
 .hero-title-outline {
   position: absolute;
   top: 50%;
-  right: calc((100vw - 100%) / -2);
+  right: calc((100vw - 100%) / -2 - 22px);
   font-size: clamp(82px, 7.5vw, 132px);
   line-height: 0.8;
   writing-mode: vertical-rl;
@@ -374,21 +374,21 @@ a {
 
 .hero-title-outline::before {
   top: 2%;
-  width: 2px;
+  width: 4px;
   height: 96%;
-  background: linear-gradient(180deg, rgba(78, 170, 156, 0.12), var(--mint) 18%, var(--mint) 86%, rgba(78, 170, 156, 0.28));
-  box-shadow: 0 0 18px rgba(78, 170, 156, 0.52);
+  background: linear-gradient(180deg, rgba(78, 170, 156, 0.18), var(--mint) 16%, var(--mint) 88%, rgba(78, 170, 156, 0.34));
+  box-shadow: 0 0 20px rgba(78, 170, 156, 0.62);
   transform: translateX(-50%) scaleY(var(--hero-arrow-progress, 0));
   transform-origin: top;
 }
 
 .hero-title-outline::after {
   top: var(--hero-arrow-y, 2%);
-  width: 13px;
-  height: 13px;
-  border-right: 3px solid var(--mint);
-  border-bottom: 3px solid var(--mint);
-  filter: drop-shadow(0 0 8px rgba(78, 170, 156, 0.68));
+  width: 17px;
+  height: 17px;
+  border-right: 5px solid var(--mint);
+  border-bottom: 5px solid var(--mint);
+  filter: drop-shadow(0 0 10px rgba(78, 170, 156, 0.78));
   transform: translate(-50%, -100%) rotate(45deg);
 }
 
