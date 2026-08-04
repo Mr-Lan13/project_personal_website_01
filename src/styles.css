@@ -894,6 +894,7 @@ a {
   overflow: hidden;
 }
 
+/* 白色横线对比方案：需要恢复时取消这段注释即可。
 .strengths::before {
   content: '';
   position: absolute;
@@ -911,6 +912,7 @@ a {
   background: rgba(245, 245, 238, 0.92);
   box-shadow: 0 0 14px rgba(245, 245, 238, 0.22);
 }
+*/
 
 .strength-grid {
   display: grid;
