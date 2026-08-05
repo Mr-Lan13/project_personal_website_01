@@ -19,7 +19,7 @@ body,
   height: 100%;
   margin: 0;
   overflow: hidden;
-  background: var(--bright-cyan);
+  background: #050708;
 }
 
 a {
@@ -34,17 +34,22 @@ a {
   overflow: hidden;
   isolation: isolate;
   color: var(--text);
+  background:
+    radial-gradient(circle at 82% 36%, rgba(78, 170, 156, 0.18), transparent 26%),
+    radial-gradient(circle at 14% 12%, rgba(78, 170, 156, 0.14), transparent 30%),
+    #050708;
 }
 
 .creative-lab-grid {
   position: absolute;
-  inset: 0;
+  inset: -6vh -5vw;
   z-index: 0;
+  transform: scale(1.02);
 }
 
 .creative-lab-back {
   position: absolute;
-  top: 24px;
+  top: 28px;
   right: max(48px, calc((100vw - 1700px) / 2));
   z-index: 4;
   display: inline-flex;
@@ -53,14 +58,17 @@ a {
   width: 48px;
   height: 48px;
   padding: 0;
-  border: 1px solid rgba(5, 18, 16, 0.5);
+  border: 1px solid rgba(245, 245, 238, 0.9);
   border-radius: 50%;
-  background: #071311;
+  background: rgba(5, 7, 8, 0.78);
   color: #f5f5ee;
   font-size: 25px;
   font-weight: 500;
   line-height: 1;
-  box-shadow: 0 10px 30px rgba(5, 18, 16, 0.16);
+  box-shadow:
+    0 10px 30px rgba(5, 7, 8, 0.26),
+    0 0 0 1px rgba(245, 245, 238, 0.08) inset;
+  backdrop-filter: blur(8px);
   transition:
     border-color 180ms ease,
     background 180ms ease,
@@ -70,42 +78,65 @@ a {
 
 .creative-lab-back:hover,
 .creative-lab-back:focus-visible {
-  border-color: #0c8f80;
-  background: #28bca9;
+  border-color: var(--bright-cyan);
+  background: var(--bright-cyan);
   color: #06100e;
   transform: translateY(-2px);
+  box-shadow:
+    0 12px 34px rgba(5, 7, 8, 0.28),
+    0 0 28px rgba(69, 224, 204, 0.52);
 }
 
 .creative-lab-heading {
   position: absolute;
-  top: 72px;
+  top: 38px;
   left: max(48px, calc((100vw - 1700px) / 2));
   z-index: 3;
-  max-width: 680px;
+  max-width: 740px;
+  padding: 22px 34px 28px 0;
   pointer-events: none;
 }
 
+.creative-lab-heading::before {
+  content: '';
+  position: absolute;
+  inset: -24px -54px -34px -42px;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 28% 48%, rgba(5, 7, 8, 0.58), transparent 62%),
+    linear-gradient(90deg, rgba(5, 7, 8, 0.48), rgba(5, 7, 8, 0.2) 58%, transparent 100%);
+  filter: blur(18px);
+  opacity: 0.82;
+}
+
 .creative-lab-heading p {
-  margin: 0 0 16px;
-  color: rgba(4, 39, 34, 0.72);
-  font-size: 13px;
-  font-weight: 680;
+  margin: 0 0 12px;
+  color: #f5f5ee;
+  font-size: 15px;
+  font-weight: 780;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
+  text-shadow: 0 3px 18px rgba(5, 7, 8, 0.8);
 }
 
 .creative-lab-heading h1 {
   margin: 0;
-  font-size: 82px;
-  line-height: 0.96;
-  letter-spacing: 0;
+  font-size: clamp(64px, 7vw, 108px);
+  line-height: 0.86;
+  letter-spacing: -0.08em;
   color: #f5f5ee;
+  text-shadow:
+    0 3px 18px rgba(5, 7, 8, 0.74),
+    0 0 1px rgba(245, 245, 238, 0.76);
 }
 
 .creative-lab-heading > span {
   display: block;
-  margin-top: 22px;
-  color: rgba(5, 20, 17, 0.68);
-  font-size: 15px;
+  margin-top: 20px;
+  color: rgba(245, 245, 238, 0.94);
+  font-size: 17px;
+  line-height: 1.45;
+  text-shadow: 0 3px 18px rgba(5, 7, 8, 0.82);
 }
 
 @media (max-width: 1280px) {
