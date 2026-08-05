@@ -1,11 +1,11 @@
 const revealGroups = [
-  { selector: '.video-backdrop', effect: 'reveal-scale', baseDelay: 0 },
+  { selector: '.video-backdrop', effect: 'reveal-hero-video', baseDelay: 0 },
   { selector: '.nav', effect: 'reveal-from-top', baseDelay: 80 },
   {
     selector: '.hero .eyebrow, .hero-title-solid, .hero-title-outline, .hero-copy, .hero-actions > a',
-    effect: 'reveal-up',
-    baseDelay: 140,
-    step: 75,
+    effect: 'reveal-hero-mosaic',
+    baseDelay: 160,
+    step: 110,
   },
   {
     selector: '.experience .section-kicker, .experience h2, .portrait-frame, .palette-card',

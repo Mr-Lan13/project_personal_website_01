@@ -1351,7 +1351,7 @@ a {
 
 .reveal-item {
   opacity: 0;
-  will-change: opacity, translate, filter, scale;
+  will-change: opacity, translate, filter, scale, clip-path;
 }
 
 .reveal-item.is-visible {
@@ -1375,11 +1375,36 @@ a {
   animation-duration: 1100ms;
 }
 
+.reveal-item.reveal-hero-video.is-visible {
+  animation-name: hero-video-stabilize;
+  animation-duration: 1400ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-item.reveal-hero-mosaic {
+  clip-path: inset(0 0 0 0);
+}
+
+.reveal-item.reveal-hero-mosaic.is-visible {
+  animation-name: hero-mosaic-resolve;
+  animation-duration: 1120ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-title-outline.reveal-item.reveal-hero-mosaic.is-visible {
+  animation-duration: 1320ms;
+}
+
+.hero-actions > a.reveal-item.reveal-hero-mosaic.is-visible {
+  animation-duration: 880ms;
+}
+
 .reveal-item.reveal-complete {
   opacity: 1;
   translate: 0 0;
   scale: 1;
   filter: none;
+  clip-path: inset(0 0 0 0);
   animation: none;
   will-change: auto;
 }
@@ -1440,6 +1465,79 @@ a {
   }
 }
 
+@keyframes hero-video-stabilize {
+  0% {
+    opacity: 0;
+    scale: 1.055;
+    filter: blur(18px) brightness(0.64) saturate(0.68);
+  }
+
+  42% {
+    opacity: 0.82;
+    scale: 1.025;
+    filter: blur(7px) brightness(0.68) saturate(0.76);
+  }
+
+  100% {
+    opacity: 1;
+    scale: 1;
+    filter: blur(0) brightness(1) saturate(1);
+  }
+}
+
+@keyframes hero-mosaic-resolve {
+  0% {
+    opacity: 0;
+    translate: -18px 18px;
+    scale: 0.985;
+    filter: blur(18px) contrast(1.8);
+    clip-path: inset(42% 0 44% 0);
+  }
+
+  12% {
+    opacity: 0.22;
+    translate: 14px -8px;
+    filter: blur(16px) contrast(2.1);
+    clip-path: inset(12% 0 66% 0);
+  }
+
+  24% {
+    opacity: 0.48;
+    translate: -8px 7px;
+    filter: blur(12px) contrast(1.9);
+    clip-path: inset(62% 0 11% 0);
+  }
+
+  38% {
+    opacity: 0.68;
+    translate: 7px -3px;
+    filter: blur(8px) contrast(1.55);
+    clip-path: inset(0 0 0 0);
+  }
+
+  56% {
+    opacity: 0.88;
+    translate: -2px 2px;
+    scale: 1.01;
+    filter: blur(4px) contrast(1.24);
+  }
+
+  78% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: blur(1px) contrast(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: blur(0) contrast(1);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-item,
   .reveal-item.is-visible,
@@ -1448,6 +1546,7 @@ a {
     translate: 0 0;
     scale: 1;
     filter: none;
+    clip-path: inset(0 0 0 0);
     animation: none;
     will-change: auto;
   }
