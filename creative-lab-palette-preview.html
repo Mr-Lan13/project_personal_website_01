@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>创意实验室配色方案预览</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", "Microsoft YaHei", sans-serif;
+        background: #050708;
+        color: #f5f5ee;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 1080px;
+        background:
+          radial-gradient(circle at 82% 8%, rgba(78, 170, 156, 0.18), transparent 28%),
+          linear-gradient(180deg, #050708, #070a0a 42%, #050708);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .topbar {
+        position: fixed;
+        top: 22px;
+        left: 50%;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: min(calc(100% - 64px), 1680px);
+        padding: 12px 14px 12px 22px;
+        border: 1px solid rgba(245, 245, 238, 0.12);
+        border-radius: 999px;
+        background: rgba(5, 7, 8, 0.58);
+        backdrop-filter: blur(18px);
+        transform: translateX(-50%);
+      }
+
+      .topbar strong {
+        color: #f5f5ee;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .topbar nav {
+        display: flex;
+        gap: 8px;
+      }
+
+      .topbar a {
+        padding: 9px 13px;
+        border-radius: 999px;
+        color: rgba(245, 245, 238, 0.72);
+        font-size: 12px;
+        transition: background 160ms ease, color 160ms ease;
+      }
+
+      .topbar a:hover {
+        background: rgba(78, 170, 156, 0.2);
+        color: #f5f5ee;
+      }
+
+      .palette-page {
+        display: grid;
+        gap: 26px;
+        width: min(calc(100% - 64px), 1680px);
+        margin: 0 auto;
+        padding: 108px 0 48px;
+      }
+
+      .palette-card {
+        --bg: #050708;
+        --panel: #0b1110;
+        --edge: #45e0cc;
+        --solid: #45e0cc;
+        --solid-dark: #071311;
+        --title: #f5f5ee;
+        --kicker: #45e0cc;
+        --copy: #bda8ff;
+        --fog: rgba(5, 7, 8, 0.48);
+        position: relative;
+        min-height: 560px;
+        overflow: hidden;
+        border: 1px solid rgba(245, 245, 238, 0.12);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--edge) 18%, transparent), transparent 26%),
+          radial-gradient(circle at 88% 74%, color-mix(in srgb, var(--copy) 16%, transparent), transparent 28%),
+          var(--bg);
+      }
+
+      .palette-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(5, 7, 8, 0.1), transparent 42%, rgba(5, 7, 8, 0.24)),
+          linear-gradient(180deg, transparent 76%, rgba(5, 7, 8, 0.34));
+      }
+
+      .lab-grid {
+        position: absolute;
+        inset: -12% -14%;
+        z-index: 0;
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 18px;
+        width: 128%;
+        height: 128%;
+        transform: rotate(-15deg);
+      }
+
+      .lab-row {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 18px;
+      }
+
+      .tile {
+        position: relative;
+        overflow: hidden;
+        border: 2px solid color-mix(in srgb, var(--edge) 70%, transparent);
+        border-radius: 12px;
+        background:
+          linear-gradient(135deg, color-mix(in srgb, var(--panel) 86%, var(--edge)), var(--panel)),
+          var(--panel);
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.24);
+      }
+
+      .tile.work::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, transparent 9%, rgba(245, 245, 238, 0.18) 10%, transparent 11%),
+          linear-gradient(180deg, transparent 47%, color-mix(in srgb, var(--title) 66%, transparent) 48%, color-mix(in srgb, var(--title) 76%, transparent) 62%, transparent 63%),
+          repeating-linear-gradient(90deg, color-mix(in srgb, var(--title) 22%, transparent) 0 1px, transparent 1px 22px),
+          repeating-linear-gradient(180deg, color-mix(in srgb, var(--title) 18%, transparent) 0 1px, transparent 1px 18px);
+        opacity: 0.58;
+      }
+
+      .tile.work::after {
+        content: "AI Design System";
+        position: absolute;
+        right: 18px;
+        bottom: 18px;
+        color: var(--title);
+        font-size: 18px;
+        font-weight: 780;
+        line-height: 1;
+      }
+
+      .tile.solid {
+        border-color: color-mix(in srgb, var(--edge) 78%, transparent);
+        background: var(--solid);
+      }
+
+      .tile.solid:nth-child(2n) {
+        background: var(--solid-dark);
+      }
+
+      .tile.solid:nth-child(3n) {
+        background: color-mix(in srgb, var(--solid) 34%, var(--solid-dark));
+      }
+
+      .heading {
+        position: absolute;
+        top: 42px;
+        left: 38px;
+        z-index: 2;
+        max-width: 560px;
+        padding: 18px 44px 22px 0;
+      }
+
+      .heading::before {
+        content: "";
+        position: absolute;
+        inset: -24px -70px -30px -36px;
+        z-index: -1;
+        border-radius: 42px;
+        background:
+          radial-gradient(ellipse at 24% 46%, var(--fog), transparent 64%),
+          linear-gradient(90deg, var(--fog), transparent 76%);
+        filter: blur(18px);
+      }
+
+      .heading p {
+        margin: 0 0 12px;
+        color: var(--kicker);
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        text-shadow: 0 0 18px color-mix(in srgb, var(--kicker) 42%, transparent);
+      }
+
+      .heading h2 {
+        margin: 0;
+        color: var(--title);
+        font-size: 74px;
+        line-height: 0.86;
+        letter-spacing: -0.08em;
+        text-shadow: 0 4px 22px rgba(0, 0, 0, 0.68);
+      }
+
+      .heading span {
+        display: block;
+        margin-top: 19px;
+        color: var(--copy);
+        font-size: 17px;
+        line-height: 1.45;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.72);
+      }
+
+      .scheme-meta {
+        position: absolute;
+        right: 30px;
+        bottom: 26px;
+        z-index: 3;
+        display: grid;
+        justify-items: end;
+        gap: 12px;
+      }
+
+      .scheme-meta h3 {
+        margin: 0;
+        color: var(--title);
+        font-size: 22px;
+      }
+
+      .swatches {
+        display: flex;
+        gap: 8px;
+        padding: 8px;
+        border: 1px solid rgba(245, 245, 238, 0.12);
+        border-radius: 999px;
+        background: rgba(5, 7, 8, 0.42);
+        backdrop-filter: blur(12px);
+      }
+
+      .swatches i {
+        display: block;
+        width: 38px;
+        height: 20px;
+        border: 1px solid rgba(245, 245, 238, 0.18);
+        border-radius: 999px;
+        background: var(--c);
+      }
+
+      .scheme-01 {
+        --bg: #050708;
+        --panel: #07110f;
+        --edge: #45e0cc;
+        --solid: #45e0cc;
+        --solid-dark: #071311;
+        --title: #f5f5ee;
+        --kicker: #45e0cc;
+        --copy: #bda8ff;
+        --fog: rgba(5, 7, 8, 0.42);
+      }
+
+      .scheme-02 {
+        --bg: #040608;
+        --panel: #0a1015;
+        --edge: #86d8ff;
+        --solid: #8adfff;
+        --solid-dark: #07121a;
+        --title: #f6f4ea;
+        --kicker: #8adfff;
+        --copy: #b9c7d6;
+        --fog: rgba(4, 6, 8, 0.5);
+      }
+
+      .scheme-03 {
+        --bg: #060508;
+        --panel: #100d16;
+        --edge: #bda8ff;
+        --solid: #bda8ff;
+        --solid-dark: #0b0910;
+        --title: #f5f5ee;
+        --kicker: #8adfd5;
+        --copy: #d6ccff;
+        --fog: rgba(6, 5, 8, 0.48);
+      }
+
+      .scheme-04 {
+        --bg: #f5f5ee;
+        --panel: #e4e7de;
+        --edge: #0b8279;
+        --solid: #4eaa9c;
+        --solid-dark: #050708;
+        --title: #050708;
+        --kicker: #0b8279;
+        --copy: #4f5260;
+        --fog: rgba(245, 245, 238, 0.36);
+      }
+
+      .scheme-04::after {
+        background: linear-gradient(90deg, rgba(245, 245, 238, 0.18), transparent 48%, rgba(5, 7, 8, 0.08));
+      }
+
+      .scheme-05 {
+        --bg: #020b0a;
+        --panel: #061816;
+        --edge: #2fd0a4;
+        --solid: #2fd0a4;
+        --solid-dark: #02100e;
+        --title: #f2fff8;
+        --kicker: #92ffe1;
+        --copy: #9fc7bc;
+        --fog: rgba(2, 11, 10, 0.52);
+      }
+
+      .scheme-06 {
+        --bg: #050509;
+        --panel: #0c0c13;
+        --edge: #d8dde7;
+        --solid: #d8dde7;
+        --solid-dark: #050708;
+        --title: #f5f5ee;
+        --kicker: #d8dde7;
+        --copy: #8fd9cf;
+        --fog: rgba(5, 5, 9, 0.54);
+      }
+
+      @media (max-width: 1280px) {
+        .heading h2 {
+          font-size: 62px;
+        }
+
+        .palette-card {
+          min-height: 500px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <strong>Creative Lab Palette Preview</strong>
+      <nav aria-label="配色方案导航">
+        <a href="#scheme-01">01 暗青</a>
+        <a href="#scheme-02">02 冰蓝</a>
+        <a href="#scheme-03">03 紫灰</a>
+        <a href="#scheme-04">04 亮底</a>
+        <a href="#scheme-05">05 深绿</a>
+        <a href="#scheme-06">06 银黑</a>
+      </nav>
+    </header>
+
+    <main class="palette-page">
+      <section class="palette-card scheme-01" id="scheme-01">
+        <div class="lab-grid" aria-hidden="true">
+          <div class="lab-row">
+            <div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div>
+          </div>
+          <div class="lab-row">
+            <div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div>
+          </div>
+          <div class="lab-row">
+            <div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div>
+          </div>
+          <div class="lab-row">
+            <div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div>
+          </div>
+        </div>
+        <div class="heading"><p>Creative Lab</p><h2>创意实验室</h2><span>不要让创意死于清晨，不要让技术隐于表达</span></div>
+        <div class="scheme-meta"><h3>01 暗青主线</h3><div class="swatches"><i style="--c:#050708"></i><i style="--c:#45e0cc"></i><i style="--c:#f5f5ee"></i><i style="--c:#bda8ff"></i></div></div>
+      </section>
+
+      <section class="palette-card scheme-02" id="scheme-02">
+        <div class="lab-grid" aria-hidden="true">
+          <div class="lab-row"><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div></div>
+        </div>
+        <div class="heading"><p>Creative Lab</p><h2>创意实验室</h2><span>冷一点，更像数字展厅；适合科技感更强的版本</span></div>
+        <div class="scheme-meta"><h3>02 冰蓝冷光</h3><div class="swatches"><i style="--c:#040608"></i><i style="--c:#8adfff"></i><i style="--c:#f6f4ea"></i><i style="--c:#b9c7d6"></i></div></div>
+      </section>
+
+      <section class="palette-card scheme-03" id="scheme-03">
+        <div class="lab-grid" aria-hidden="true">
+          <div class="lab-row"><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div></div>
+        </div>
+        <div class="heading"><p>Creative Lab</p><h2>创意实验室</h2><span>保留高级感，但更偏 AI / 梦境 / 生成式视觉</span></div>
+        <div class="scheme-meta"><h3>03 柔紫灰</h3><div class="swatches"><i style="--c:#060508"></i><i style="--c:#bda8ff"></i><i style="--c:#f5f5ee"></i><i style="--c:#8adfd5"></i></div></div>
+      </section>
+
+      <section class="palette-card scheme-04" id="scheme-04">
+        <div class="lab-grid" aria-hidden="true">
+          <div class="lab-row"><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div></div>
+        </div>
+        <div class="heading"><p>Creative Lab</p><h2>创意实验室</h2><span>最不像现在的一套，适合想把实验室做得更大胆更亮</span></div>
+        <div class="scheme-meta"><h3>04 暖白亮底</h3><div class="swatches"><i style="--c:#f5f5ee"></i><i style="--c:#4eaa9c"></i><i style="--c:#050708"></i><i style="--c:#4f5260"></i></div></div>
+      </section>
+
+      <section class="palette-card scheme-05" id="scheme-05">
+        <div class="lab-grid" aria-hidden="true">
+          <div class="lab-row"><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div></div>
+        </div>
+        <div class="heading"><p>Creative Lab</p><h2>创意实验室</h2><span>更潮湿、更深，像夜里的交互装置或地下展厅</span></div>
+        <div class="scheme-meta"><h3>05 深绿荧光</h3><div class="swatches"><i style="--c:#020b0a"></i><i style="--c:#2fd0a4"></i><i style="--c:#f2fff8"></i><i style="--c:#9fc7bc"></i></div></div>
+      </section>
+
+      <section class="palette-card scheme-06" id="scheme-06">
+        <div class="lab-grid" aria-hidden="true">
+          <div class="lab-row"><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile work"></div><div class="tile solid"></div></div>
+          <div class="lab-row"><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div><div class="tile solid"></div></div>
+        </div>
+        <div class="heading"><p>Creative Lab</p><h2>创意实验室</h2><span>更克制，更像高级作品档案馆，青色只做指引</span></div>
+        <div class="scheme-meta"><h3>06 银黑档案</h3><div class="swatches"><i style="--c:#050509"></i><i style="--c:#d8dde7"></i><i style="--c:#f5f5ee"></i><i style="--c:#8fd9cf"></i></div></div>
+      </section>
+    </main>
+  </body>
+</html>
