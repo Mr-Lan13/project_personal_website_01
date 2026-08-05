@@ -7,10 +7,13 @@ const h = React.createElement;
 const GridMotion = ({ items = [], gradientColor = '#050607' }) => {
   const rowRefs = useRef([]);
   const mouseXRef = useRef(typeof window === 'undefined' ? 0 : window.innerWidth / 2);
+  const introStartedAtRef = useRef(0);
   const totalItems = 28;
   const combinedItems = items.length > 0 ? items.slice(0, totalItems) : Array.from({ length: totalItems }, (_, index) => `Item ${index + 1}`);
 
   useEffect(() => {
+    introStartedAtRef.current = performance.now();
+
     const handleMouseMove = (event) => {
       mouseXRef.current = event.clientX;
     };
@@ -20,15 +23,22 @@ const GridMotion = ({ items = [], gradientColor = '#050607' }) => {
       const baseDuration = 1.25;
       const inertiaFactors = [0.9, 0.75, 0.65, 0.55];
       const viewportWidth = Math.max(window.innerWidth, 1);
+      const introDuration = 1000;
+      const introElapsed = performance.now() - introStartedAtRef.current;
+      const introProgress = Math.min(Math.max(introElapsed / introDuration, 0), 1);
+      const introDrift = Math.sin(introProgress * Math.PI) * 78;
+      const isIntroActive = introProgress < 1;
 
       rowRefs.current.forEach((row, index) => {
         if (!row) return;
         const direction = index % 2 === 0 ? 1 : -1;
-        const moveAmount = ((mouseXRef.current / viewportWidth) * maxMoveAmount - maxMoveAmount / 2) * direction;
+        const mouseMoveAmount = ((mouseXRef.current / viewportWidth) * maxMoveAmount - maxMoveAmount / 2) * direction;
+        const introMoveAmount = introDrift * direction * (index % 2 === 0 ? 1 : 0.82);
+        const moveAmount = isIntroActive ? introMoveAmount : mouseMoveAmount;
         gsap.to(row, {
           x: moveAmount,
-          duration: baseDuration + inertiaFactors[index % inertiaFactors.length],
-          ease: 'power3.out',
+          duration: isIntroActive ? 0.34 : baseDuration + inertiaFactors[index % inertiaFactors.length],
+          ease: isIntroActive ? 'power2.out' : 'power3.out',
           overwrite: 'auto',
         });
       });
