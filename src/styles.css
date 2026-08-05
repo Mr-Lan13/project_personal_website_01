@@ -1419,11 +1419,18 @@ a {
 }
 
 .click-stack-page-number {
+  display: block;
+  margin-bottom: 22px;
   font-size: clamp(150px, 16vw, 250px);
   font-weight: 520;
   line-height: 0.76;
   color: rgba(245, 245, 238, 0.92);
   text-shadow: 0 0 44px rgba(78, 170, 156, 0.16);
+}
+
+.click-stack-copy .strength-lede {
+  max-width: 460px;
+  margin-top: 22px;
 }
 
 .click-stack-card {
@@ -1489,6 +1496,18 @@ a {
 .click-stack-card--cover:focus-visible .click-stack-click-word {
   color: var(--mint);
   transform: scale(1.025);
+}
+
+.click-stack-cover-note {
+  position: absolute;
+  right: clamp(24px, 3vw, 42px);
+  bottom: clamp(22px, 2.8vw, 38px);
+  z-index: 2;
+  color: rgba(245, 245, 238, 0.56);
+  font-size: 13px;
+  font-weight: 680;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .click-stack-visual-shell {

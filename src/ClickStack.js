@@ -167,7 +167,9 @@ export default function ClickStack() {
       h(
         'div',
         { className: 'click-stack-copy', key: activeCard.key },
-        h('h2', { className: 'click-stack-page-number' }, activeCard.number),
+        h('span', { className: 'click-stack-page-number' }, activeCard.number),
+        h('h2', null, activeCard.theme),
+        h('p', { className: 'strength-lede' }, activeCard.caption),
       ),
     h(
       'div',
@@ -192,12 +194,16 @@ export default function ClickStack() {
             'aria-label': isCover ? '点击开始了解我' : `查看第 ${item.number} 页：${item.theme}`,
           },
           isCover
-            ? h('span', { className: 'click-stack-click-word' }, 'CLICK')
+            ? h(
+                React.Fragment,
+                null,
+                h('span', { className: 'click-stack-click-word' }, 'CLICK'),
+                h('span', { className: 'click-stack-cover-note' }, 'Lan-个人优势'),
+              )
             : h(
                 React.Fragment,
                 null,
                 h('span', { className: 'click-stack-visual-shell' }, h(PageVisual, { visual: item.visual })),
-                h('span', { className: 'click-stack-card-caption' }, item.caption),
               ),
         );
       }),
