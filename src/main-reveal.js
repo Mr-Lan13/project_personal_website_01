@@ -2,7 +2,7 @@ const revealGroups = [
   { selector: '.video-backdrop', effect: 'reveal-scale', baseDelay: 0 },
   { selector: '.nav', effect: 'reveal-from-top', baseDelay: 80 },
   {
-    selector: '.hero .eyebrow, .hero-title-solid, .hero-title-outline, .hero-copy, .hero-actions > a, .scroll-note',
+    selector: '.hero .eyebrow, .hero-title-solid, .hero-title-outline, .hero-copy, .hero-actions > a',
     effect: 'reveal-up',
     baseDelay: 140,
     step: 75,
@@ -22,7 +22,6 @@ const revealGroups = [
     effect: 'reveal-up',
     step: 80,
   },
-  { selector: '.floating-contact', effect: 'reveal-from-right', baseDelay: 500 },
 ];
 
 function setupRevealAnimations() {
@@ -78,71 +77,33 @@ function startRevealAnimations() {
   setupRevealAnimations();
 }
 
-function setupHeroDesignArrow() {
+function setupHeroDesignFill() {
   const hero = document.querySelector('.hero');
   const designTitle = document.querySelector('.hero-title-outline');
   if (!hero || !designTitle) {
-    window.requestAnimationFrame(setupHeroDesignArrow);
+    window.requestAnimationFrame(setupHeroDesignFill);
     return;
   }
 
   let animationFrame = 0;
-  let hasScrollIntent = window.scrollY > 2;
-  let arrowRevealProgress = hasScrollIntent ? 1 : 0;
-  let arrowRevealFrame = 0;
 
-  const updateArrow = () => {
+  const updateFill = () => {
     animationFrame = 0;
     const heroHeight = Math.max(hero.offsetHeight, 1);
     const progress = Math.min(Math.max(window.scrollY / (heroHeight * 0.86), 0), 1);
-    const visualProgress = hasScrollIntent ? Math.max(progress, arrowRevealProgress) : progress;
-    const opacity = hasScrollIntent ? Math.max(Math.min(progress * 5, 1), 0.95) : 0;
+    const easedProgress = 1 - Math.pow(1 - progress, 2.4);
 
-    designTitle.style.setProperty('--hero-arrow-progress', visualProgress.toFixed(3));
-    designTitle.style.setProperty('--hero-arrow-y', `${2 + visualProgress * 96}%`);
-    designTitle.style.setProperty('--hero-arrow-opacity', opacity.toFixed(3));
+    designTitle.style.setProperty('--hero-design-fill', (easedProgress * 0.92).toFixed(3));
   };
 
-  const scheduleArrowUpdate = () => {
-    if (!animationFrame) animationFrame = window.requestAnimationFrame(updateArrow);
+  const scheduleFillUpdate = () => {
+    if (!animationFrame) animationFrame = window.requestAnimationFrame(updateFill);
   };
 
-  const activateArrow = () => {
-    if (hasScrollIntent && arrowRevealProgress >= 1) {
-      return;
-    }
-
-    hasScrollIntent = true;
-    if (arrowRevealFrame) {
-      window.cancelAnimationFrame(arrowRevealFrame);
-    }
-
-    const startTime = performance.now();
-    const duration = 300;
-    const easeOut = (value) => 1 - Math.pow(1 - value, 3);
-
-    const animateArrowReveal = (time) => {
-      const elapsed = Math.min((time - startTime) / duration, 1);
-      arrowRevealProgress = easeOut(elapsed);
-      scheduleArrowUpdate();
-
-      if (elapsed < 1) {
-        arrowRevealFrame = window.requestAnimationFrame(animateArrowReveal);
-      } else {
-        arrowRevealProgress = 1;
-        arrowRevealFrame = 0;
-        scheduleArrowUpdate();
-      }
-    };
-
-    arrowRevealFrame = window.requestAnimationFrame(animateArrowReveal);
-  };
-
-  updateArrow();
-  window.addEventListener('wheel', activateArrow, { passive: true });
-  window.addEventListener('scroll', scheduleArrowUpdate, { passive: true });
-  window.addEventListener('resize', scheduleArrowUpdate);
+  updateFill();
+  window.addEventListener('scroll', scheduleFillUpdate, { passive: true });
+  window.addEventListener('resize', scheduleFillUpdate);
 }
 
 startRevealAnimations();
-setupHeroDesignArrow();
+setupHeroDesignFill();
