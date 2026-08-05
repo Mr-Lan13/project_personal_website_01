@@ -67,13 +67,16 @@ const GridMotion = ({ items = [], gradientColor = '#050607' }) => {
           h(
             'div',
             { className: 'row', key: rowIndex, ref: (element) => { rowRefs.current[rowIndex] = element; } },
-            Array.from({ length: 7 }, (_, itemIndex) =>
-              h(
+            Array.from({ length: 7 }, (_, itemIndex) => {
+              const isSolidBlock = rowIndex === 0 || rowIndex === 3 || itemIndex === 0 || itemIndex === 6;
+              const itemClassName = `row__item${isSolidBlock ? ' row__item--solid' : ''}`;
+
+              return h(
                 'div',
-                { className: 'row__item', key: `${rowIndex}-${itemIndex}` },
-                h('div', { className: 'row__item-inner' }, combinedItems[rowIndex * 7 + itemIndex]),
-              ),
-            ),
+                { className: itemClassName, key: `${rowIndex}-${itemIndex}`, 'aria-hidden': isSolidBlock || undefined },
+                h('div', { className: 'row__item-inner' }, isSolidBlock ? null : combinedItems[rowIndex * 7 + itemIndex]),
+              );
+            }),
           ),
         ),
       ),

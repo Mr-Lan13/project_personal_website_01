@@ -69,6 +69,31 @@
     box-shadow 220ms ease;
 }
 
+.grid-motion-root .row__item--solid .row__item-inner {
+  border-color: rgba(69, 224, 204, 0.72);
+  background: #45e0cc;
+  box-shadow:
+    0 0 0 1px rgba(245, 245, 238, 0.08) inset,
+    0 18px 46px rgba(5, 7, 8, 0.18);
+}
+
+.grid-motion-root .row__item--solid:nth-child(2n) .row__item-inner {
+  background: #050708;
+}
+
+.grid-motion-root .row__item--solid:nth-child(3n) .row__item-inner {
+  background: #102521;
+}
+
+.grid-motion-root .row:nth-child(4) .row__item--solid:nth-child(2n + 1) .row__item-inner {
+  background: #45e0cc;
+}
+
+.grid-motion-root .row:nth-child(2) .row__item--solid .row__item-inner,
+.grid-motion-root .row:nth-child(3) .row__item--solid .row__item-inner {
+  background: #050708;
+}
+
 .grid-motion-root .row__item-inner:has(.grid-project-link:hover),
 .grid-motion-root .row__item-inner:has(.grid-project-link:focus-visible) {
   border-color: rgba(69, 224, 204, 0.92);
