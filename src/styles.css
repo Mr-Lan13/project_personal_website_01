@@ -114,9 +114,9 @@ a {
   z-index: -1;
   background:
     linear-gradient(180deg, transparent 68%, rgba(5, 6, 7, 0.42) 84%, #050607 100%),
-    radial-gradient(circle at 18% 30%, rgba(78, 170, 156, 0.15), transparent 30%),
-    radial-gradient(circle at 82% 18%, rgba(189, 168, 255, 0.16), transparent 28%),
-    linear-gradient(90deg, rgba(5, 6, 7, 0.9), rgba(5, 6, 7, 0.5) 58%, rgba(5, 6, 7, 0.78));
+    radial-gradient(circle at 16% 30%, rgba(78, 170, 156, 0.22), transparent 31%),
+    radial-gradient(circle at 84% 18%, rgba(189, 168, 255, 0.18), transparent 27%),
+    linear-gradient(90deg, rgba(5, 6, 7, 0.98) 0%, rgba(5, 6, 7, 0.78) 24%, rgba(5, 6, 7, 0.42) 58%, rgba(78, 170, 156, 0.24) 78%, rgba(5, 6, 7, 0.86) 100%);
 }
 
 .hero::after {
