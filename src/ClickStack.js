@@ -2,59 +2,150 @@ import React from 'react';
 
 const h = React.createElement;
 
-const defaultDetails = [
+const visualPalette = [
+  { name: '深黑底', hex: '#050708', role: '背景 / 空间 / 对比', tone: 'dark' },
+  { name: '主青色', hex: '#4EAA9C', role: '强调 / 光效 / 交互', tone: 'mint' },
+  { name: '暖白字', hex: '#F5F5EE', role: '标题 / 正文 / 高亮', tone: 'light' },
+  { name: '柔紫灰', hex: '#BDA8FF', role: '辅助层级 / AI 情绪', tone: 'violet' },
+];
+
+const workflowNodes = [
+  { label: '了解需求', note: '确认目标、身份与页面边界' },
+  { label: '项目背景', note: '整理个人作品集的表达重点' },
+  { label: '调研与灵感', note: '参考视觉方向与交互形式' },
+  { label: '信息梳理', note: '拆分 Hero、经历、优势与联系' },
+  { label: '视觉方向', note: '确定暗色、青色、克制科技感' },
+  { label: '开始制作', note: 'React + Vite 组件化落地' },
+  { label: 'AI 协作', note: '快速迭代动效、布局与内容' },
+  { label: '测试与优化', note: '构建、预览、检查与提交' },
+];
+
+const structureModules = [
+  { label: '信息架构', value: 'IA' },
+  { label: '交互路径', value: 'UX' },
+  { label: '组件规范', value: 'UI' },
+  { label: '体验骨架', value: 'PX' },
+];
+
+const deliverySteps = [
+  { label: '抽象创意', tag: 'Idea' },
+  { label: '设计标准', tag: 'Rule' },
+  { label: '页面方案', tag: 'Page' },
+  { label: '交付资产', tag: 'Ship' },
+];
+
+const pages = [
   {
-    eyebrow: 'Visual System',
-    detail: '从品牌气质、版式秩序到界面情绪，建立稳定且可延展的视觉表达。',
-    tags: ['品牌视觉', '界面质感', '版式秩序'],
+    number: '01',
+    theme: '视觉设计',
+    visual: 'palette',
+    caption: '以颜色定义网站的视觉层级与情绪，并以这些统一的视觉元素建立页面之间的交互联系。',
   },
   {
-    eyebrow: 'AI Pipeline',
-    detail: '把 AI 工具接入灵感、草图、资产变体和落地文件，保持创意速度与输出可控。',
-    tags: ['生成流程', '资产变体', '效率系统'],
+    number: '02',
+    theme: '产品工作流',
+    visual: 'workflow',
+    caption: '从需求、背景、灵感到制作、AI 协作与测试优化，形成清晰的项目制作路径。',
   },
   {
-    eyebrow: 'Product Logic',
-    detail: '在信息架构、交互路径和组件规范之间搭建清晰的产品体验骨架。',
-    tags: ['信息架构', '交互路径', '组件规范'],
+    number: '03',
+    theme: '产品结构',
+    visual: 'structure',
+    caption: '将信息架构、交互路径与组件规范收束成可阅读、可扩展的体验骨架。',
   },
   {
-    eyebrow: 'Team Delivery',
-    detail: '把抽象创意翻译成团队可执行的页面、规范、节奏和交付物。',
-    tags: ['设计协作', '交付标准', '跨职能沟通'],
+    number: '04',
+    theme: '跨职能协作',
+    visual: 'delivery',
+    caption: '把抽象创意翻译成团队可执行的设计标准、页面方案与交付资产。',
   },
 ];
 
 const coverCard = {
   key: 'cover',
   type: 'cover',
-  title: '个人优势',
-  cardTitle: '点击开始了解我',
-  eyebrow: 'Capability Deck',
-  detail: '一组围绕视觉判断、AI 工作流、产品结构和协作交付展开的能力卡片。',
-  tags: ['Click', 'Explore', 'Lan'],
+  theme: '个人优势',
 };
 
-export default function ClickStack({ items, renderIcon }) {
-  const cards = React.useMemo(
-    () => [
-      coverCard,
-      ...items.map((item, index) => ({
-        ...item,
-        key: item.title,
-        type: 'content',
-        number: String(index + 1).padStart(2, '0'),
-        eyebrow: item.eyebrow || defaultDetails[index]?.eyebrow || 'Capability',
-        detail: item.detail || defaultDetails[index]?.detail || item.body,
-        tags: item.tags || defaultDetails[index]?.tags || [],
-      })),
-    ],
-    [items],
+function PaletteBoard() {
+  return h(
+    'div',
+    { className: 'stack-palette-board' },
+    visualPalette.map((color) =>
+      h(
+        'span',
+        { className: `stack-color-card stack-color-card--${color.tone}`, key: color.hex, style: { '--color': color.hex } },
+        h('i', null),
+        h('b', null, color.name),
+        h('em', null, color.hex),
+        h('small', null, color.role),
+      ),
+    ),
   );
+}
 
+function WorkflowBoard() {
+  return h(
+    'div',
+    { className: 'stack-workflow' },
+    workflowNodes.map((node, index) =>
+      h(
+        'span',
+        { className: 'stack-workflow-node', key: node.label },
+        h('b', null, String(index + 1).padStart(2, '0')),
+        h('i', null),
+        h('strong', null, node.label),
+        h('small', null, node.note),
+      ),
+    ),
+  );
+}
+
+function StructureBoard() {
+  return h(
+    'div',
+    { className: 'stack-structure-map' },
+    h('span', { className: 'stack-structure-core' }, 'Product', h('small', null, 'Logic')),
+    structureModules.map((node, index) =>
+      h(
+        'span',
+        { className: `stack-structure-node stack-structure-node--${index + 1}`, key: node.label },
+        h('b', null, node.value),
+        h('small', null, node.label),
+      ),
+    ),
+  );
+}
+
+function DeliveryBoard() {
+  return h(
+    'div',
+    { className: 'stack-delivery-path' },
+    deliverySteps.map((step, index) =>
+      h(
+        'span',
+        { className: 'stack-delivery-step', key: step.label },
+        h('b', null, step.tag),
+        h('i', null, String(index + 1).padStart(2, '0')),
+        h('small', null, step.label),
+      ),
+    ),
+  );
+}
+
+function PageVisual({ visual }) {
+  if (visual === 'palette') return h(PaletteBoard);
+  if (visual === 'workflow') return h(WorkflowBoard);
+  if (visual === 'structure') return h(StructureBoard);
+  return h(DeliveryBoard);
+}
+
+export default function ClickStack() {
+  const cards = React.useMemo(() => [coverCard, ...pages.map((page) => ({ ...page, key: page.number, type: 'content' }))], []);
   const [activeIndex, setActiveIndex] = React.useState(0);
   const total = cards.length;
   const activeCard = cards[activeIndex];
+  const isCoverActive = activeCard.type === 'cover';
 
   const moveTo = (index) => {
     setActiveIndex(index);
@@ -71,14 +162,13 @@ export default function ClickStack({ items, renderIcon }) {
 
   return h(
     'div',
-    { className: 'click-stack-shell' },
-    h(
-      'div',
-      { className: 'click-stack-copy', key: activeCard.key },
-      h('p', { className: 'section-kicker' }, activeCard.type === 'cover' ? 'Capability' : activeCard.eyebrow),
-      h('h2', null, activeCard.title),
-      h('p', { className: 'strength-lede' }, activeCard.type === 'cover' ? '点击封面卡片，查看 Lan 的 01 / 02 / 03 / 04 核心能力。' : activeCard.detail),
-    ),
+    { className: `click-stack-shell${isCoverActive ? ' is-cover-active' : ''}` },
+    !isCoverActive &&
+      h(
+        'div',
+        { className: 'click-stack-copy', key: activeCard.key },
+        h('h2', { className: 'click-stack-page-number' }, activeCard.number),
+      ),
     h(
       'div',
       { className: 'click-stack-stage', 'aria-label': '个人优势点击卡片堆' },
@@ -99,37 +189,37 @@ export default function ClickStack({ items, renderIcon }) {
             },
             onClick: () => handleCardClick(index),
             'aria-pressed': isActive,
-            'aria-label': isCover ? '点击开始了解我' : `查看第 ${item.number} 项优势：${item.title}`,
+            'aria-label': isCover ? '点击开始了解我' : `查看第 ${item.number} 页：${item.theme}`,
           },
-          h('span', { className: 'click-stack-card-number' }, isCover ? '00' : item.number),
-          h('span', { className: 'click-stack-card-icon' }, isCover ? 'LAN' : renderIcon(item.icon, 28)),
-          h('span', { className: 'click-stack-card-eyebrow' }, item.eyebrow),
-          h('span', { className: isCover ? 'click-stack-cover-title' : 'click-stack-card-body' }, isCover ? item.cardTitle : item.detail),
-          h(
-            'span',
-            { className: 'click-stack-card-tags' },
-            item.tags.map((tag) => h('i', { key: tag }, tag)),
-          ),
+          isCover
+            ? h('span', { className: 'click-stack-click-word' }, 'CLICK')
+            : h(
+                React.Fragment,
+                null,
+                h('span', { className: 'click-stack-visual-shell' }, h(PageVisual, { visual: item.visual })),
+                h('span', { className: 'click-stack-card-caption' }, item.caption),
+              ),
         );
       }),
     ),
-    h(
-      'div',
-      { className: 'click-stack-dial', 'aria-label': '切换优势模块' },
-      cards.map((item, index) =>
-        h(
-          'button',
-          {
-            type: 'button',
-            key: item.key,
-            className: index === activeIndex ? 'is-active' : '',
-            onClick: () => moveTo(index),
-            'aria-label': item.type === 'cover' ? '切换到封面卡片' : `切换到 ${item.title}`,
-          },
-          h('span', null, item.type === 'cover' ? '00' : item.number),
-          h('i', null),
+    !isCoverActive &&
+      h(
+        'div',
+        { className: 'click-stack-dial', 'aria-label': '切换优势模块' },
+        pages.map((page, index) =>
+          h(
+            'button',
+            {
+              type: 'button',
+              key: page.number,
+              className: index + 1 === activeIndex ? 'is-active' : '',
+              onClick: () => moveTo(index + 1),
+              'aria-label': `切换到第 ${page.number} 页`,
+            },
+            h('span', null, page.number),
+            h('i', null),
+          ),
         ),
       ),
-    ),
   );
 }
