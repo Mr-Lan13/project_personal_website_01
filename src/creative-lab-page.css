@@ -135,12 +135,10 @@ a {
 .creative-lab-heading > span {
   display: block;
   margin-top: 20px;
-  color: rgba(189, 168, 255, 0.9);
+  color: rgba(245, 245, 238, 0.72);
   font-size: 17px;
   line-height: 1.45;
-  text-shadow:
-    0 3px 18px rgba(5, 7, 8, 0.82),
-    0 0 16px rgba(189, 168, 255, 0.16);
+  text-shadow: 0 3px 18px rgba(5, 7, 8, 0.86);
 }
 
 @media (max-width: 1280px) {
