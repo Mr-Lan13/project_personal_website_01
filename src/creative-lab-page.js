@@ -6,9 +6,33 @@ import './creative-lab-page.css';
 
 const h = React.createElement;
 
+const zpProjects = {
+  8: {
+    title: 'ZP Visual 01',
+    type: '个人作品 / 视觉实验',
+    image: './assets/zp1.png',
+    href: 'mailto:lan.design@email.com?subject=ZP%20Visual%2001',
+    desc: 'ZP 系列视觉作品展示。',
+  },
+  12: {
+    title: 'ZP Visual 02',
+    type: '个人作品 / 视觉实验',
+    image: './assets/zp2.png',
+    href: 'mailto:lan.design@email.com?subject=ZP%20Visual%2002',
+    desc: 'ZP 系列视觉作品展示。',
+  },
+  17: {
+    title: 'ZP Visual 03',
+    type: '个人作品 / 视觉实验',
+    image: './assets/zp3.png',
+    href: 'mailto:lan.design@email.com?subject=ZP%20Visual%2003',
+    desc: 'ZP 系列视觉作品展示。',
+  },
+};
+
 function CreativeLabPage() {
   const gridItems = Array.from({ length: 28 }, (_, index) => {
-    const project = projects[index % projects.length];
+    const project = zpProjects[index] || projects[index % projects.length];
     return h(
       'a',
       {
