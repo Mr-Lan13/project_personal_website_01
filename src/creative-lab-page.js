@@ -7,18 +7,20 @@ import './creative-lab-page.css';
 const h = React.createElement;
 
 function createWorkCard(work) {
-  const hasImage = Boolean(work.image);
+  const hasDetailImage = Boolean(work.image);
+  const thumbnail = work.thumbnail || work.image;
+  const hasThumbnail = Boolean(thumbnail);
 
   return h(
     'a',
     {
-      className: `grid-project-link${hasImage ? '' : ' grid-project-link--pending'}`,
+      className: `grid-project-link${hasDetailImage ? '' : ' grid-project-link--pending'}`,
       href: `./creative-work.html?id=${encodeURIComponent(work.id)}`,
-      title: hasImage ? work.desc : '作品图等待放入',
-      'aria-label': hasImage ? `查看作品 ${work.title}` : `${work.title}，等待中`,
+      title: hasDetailImage ? work.desc : '点进展示页后显示等待中',
+      'aria-label': hasDetailImage ? `查看作品 ${work.title}` : `${work.title}，点进后等待中`,
     },
-    hasImage
-      ? h('img', { src: work.image, alt: `${work.title} 创意实验项目封面` })
+    hasThumbnail
+      ? h('img', { src: thumbnail, alt: `${work.title} 创意实验项目封面` })
       : h(
           'span',
           { className: 'grid-project-placeholder', 'aria-hidden': true },
