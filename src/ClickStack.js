@@ -67,11 +67,70 @@ const coverCard = {
   theme: '个人优势',
 };
 
+const advantageTransformItems = [
+  { name: '创意输入', hex: '#050708', role: '想法 / 概念 / 判断', tone: 'dark' },
+  { name: '审美判断', hex: '#4EAA9C', role: '风格 / 秩序 / 情绪', tone: 'mint' },
+  { name: '网页表达', hex: '#F5F5EE', role: '页面 / 视觉 / 体验', tone: 'light' },
+  { name: '产品原型', hex: '#BDA8FF', role: 'AI 应用 / 产品表达', tone: 'violet' },
+];
+
+const insightNodes = [
+  { label: '表面观点', note: '先接住直接表达出来的想法' },
+  { label: '真实冲突', note: '识别观点背后的矛盾与卡点' },
+  { label: '理念厘清', note: '把模糊判断变成清晰方向' },
+  { label: '品牌方向', note: '确认气质、边界和表达策略' },
+  { label: '关键问题', note: '找到最需要解决的核心问题' },
+  { label: '团队共识', note: '让讨论进入同一语境' },
+  { label: '方案边界', note: '明确什么该做、什么先不做' },
+  { label: '下一步', note: '把洞察转成可执行任务' },
+];
+
+const launchModules = [
+  { label: '从想法开始', value: 'Idea' },
+  { label: '真实网站', value: 'Web' },
+  { label: '域名备案', value: 'ICP' },
+  { label: '上线结果', value: 'Live' },
+];
+
+const communicationSteps = [
+  { label: '善于交流', tag: 'Talk' },
+  { label: '耐心倾听', tag: 'Listen' },
+  { label: '情绪稳定', tag: 'Stable' },
+  { label: '快速适应', tag: 'Adapt' },
+];
+
+const advantagePages = [
+  {
+    number: '01',
+    theme: '创意 | 审美转化',
+    visual: 'palette',
+    caption: '不仅有创意，还会把创意转化成网页、视觉作品和产品表达，适合产品原型与人工智能应用设计。',
+  },
+  {
+    number: '02',
+    theme: '问题洞察 | 需求分析',
+    visual: 'workflow',
+    caption: '能发现表面观点背后的真实冲突，并帮助团队厘清理念、品牌方向和关键问题。',
+  },
+  {
+    number: '03',
+    theme: '独立行动 | 从零落地',
+    visual: 'structure',
+    caption: '能够把长期停留在脑中的想法做成真实网站，完成域名、备案和上线，具备从想法到结果的行动能力。',
+  },
+  {
+    number: '04',
+    theme: '沟通表达 | 适应能力',
+    visual: 'delivery',
+    caption: '善于交流、耐心、情绪稳定，能够理解他人，也能快速适应新环境、新工具和不确定的任务。',
+  },
+];
+
 function PaletteBoard() {
   return h(
     'div',
     { className: 'stack-palette-board' },
-    visualPalette.map((color) =>
+    advantageTransformItems.map((color) =>
       h(
         'span',
         { className: `stack-color-card stack-color-card--${color.tone}`, key: color.hex, style: { '--color': color.hex } },
@@ -88,7 +147,7 @@ function WorkflowBoard() {
   return h(
     'div',
     { className: 'stack-workflow' },
-    workflowNodes.map((node, index) =>
+    insightNodes.map((node, index) =>
       h(
         'span',
         { className: 'stack-workflow-node', key: node.label },
@@ -106,7 +165,7 @@ function StructureBoard() {
     'div',
     { className: 'stack-structure-map' },
     h('span', { className: 'stack-structure-core' }, 'Product', h('small', null, 'Logic')),
-    structureModules.map((node, index) =>
+    launchModules.map((node, index) =>
       h(
         'span',
         { className: `stack-structure-node stack-structure-node--${index + 1}`, key: node.label },
@@ -121,7 +180,7 @@ function DeliveryBoard() {
   return h(
     'div',
     { className: 'stack-delivery-path' },
-    deliverySteps.map((step, index) =>
+    communicationSteps.map((step, index) =>
       h(
         'span',
         { className: 'stack-delivery-step', key: step.label },
@@ -141,7 +200,7 @@ function PageVisual({ visual }) {
 }
 
 export default function ClickStack() {
-  const cards = React.useMemo(() => [coverCard, ...pages.map((page) => ({ ...page, key: page.number, type: 'content' }))], []);
+  const cards = React.useMemo(() => [coverCard, ...advantagePages.map((page) => ({ ...page, key: page.number, type: 'content' }))], []);
   const [activeIndex, setActiveIndex] = React.useState(0);
   const total = cards.length;
   const activeCard = cards[activeIndex];
@@ -212,7 +271,7 @@ export default function ClickStack() {
       h(
         'div',
         { className: 'click-stack-dial', 'aria-label': '切换优势模块' },
-        pages.map((page, index) =>
+        advantagePages.map((page, index) =>
           h(
             'button',
             {
