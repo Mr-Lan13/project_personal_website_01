@@ -98,13 +98,50 @@ a {
 
 .video-backdrop {
   z-index: -2;
+  overflow: hidden;
   background: #050607;
 }
 
+/*
+  Hero 背景试验版：代码生成动态背景，保留原 video 标签作为撤回点。
+  撤回方式：把下面 .video-backdrop video 的 opacity 改回 1，
+  并删除/注释 .video-backdrop::before、::after 以及对应 keyframes。
+*/
 .video-backdrop video {
   object-fit: cover;
   filter: blur(3px) brightness(0.72) saturate(0.82);
+  opacity: 0;
   transform: scale(1.015);
+}
+
+.video-backdrop::before,
+.video-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: -14%;
+  pointer-events: none;
+}
+
+.video-backdrop::before {
+  background:
+    radial-gradient(ellipse at 16% 32%, rgba(78, 170, 156, 0.34), transparent 34%),
+    radial-gradient(ellipse at 76% 18%, rgba(189, 168, 255, 0.16), transparent 29%),
+    radial-gradient(ellipse at 64% 72%, rgba(78, 170, 156, 0.22), transparent 38%),
+    conic-gradient(from 146deg at 54% 48%, rgba(78, 170, 156, 0.2), rgba(5, 7, 8, 0.2), rgba(189, 168, 255, 0.1), rgba(78, 170, 156, 0.18), rgba(5, 7, 8, 0.16)),
+    linear-gradient(135deg, #050708 0%, #081211 44%, #050708 100%);
+  filter: blur(18px) saturate(1.08);
+  transform: scale(1.08);
+  animation: hero-generated-drift 9800ms ease-in-out infinite alternate;
+}
+
+.video-backdrop::after {
+  opacity: 0.58;
+  background:
+    linear-gradient(115deg, transparent 18%, rgba(78, 170, 156, 0.12) 19%, transparent 20%),
+    repeating-linear-gradient(92deg, rgba(245, 245, 238, 0.035) 0 1px, transparent 1px 18px),
+    repeating-linear-gradient(0deg, rgba(78, 170, 156, 0.028) 0 1px, transparent 1px 22px);
+  mix-blend-mode: screen;
+  animation: hero-generated-scan 7200ms linear infinite;
 }
 
 .hero::before {
@@ -131,6 +168,30 @@ a {
   background-size: 72px 72px;
   filter: drop-shadow(0 0 10px rgba(78, 170, 156, 0.18));
   mask-image: linear-gradient(180deg, black, transparent 88%);
+}
+
+@keyframes hero-generated-drift {
+  0% {
+    transform: translate3d(-2.4%, -1.4%, 0) scale(1.08) rotate(0deg);
+  }
+
+  48% {
+    transform: translate3d(2.6%, 1.8%, 0) scale(1.12) rotate(1.4deg);
+  }
+
+  100% {
+    transform: translate3d(-1.2%, 2.4%, 0) scale(1.1) rotate(-1deg);
+  }
+}
+
+@keyframes hero-generated-scan {
+  from {
+    transform: translate3d(-3%, -2%, 0);
+  }
+
+  to {
+    transform: translate3d(3%, 2%, 0);
+  }
 }
 
 .nav {
@@ -2104,6 +2165,11 @@ a {
   .nav nav a.creative-lab-link::after {
     animation: none;
     transform: none;
+  }
+
+  .video-backdrop::before,
+  .video-backdrop::after {
+    animation: none;
   }
 
 }
