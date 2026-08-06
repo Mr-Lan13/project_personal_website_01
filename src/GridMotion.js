@@ -19,14 +19,14 @@ const GridMotion = ({ items = [], gradientColor = '#050607' }) => {
     };
 
     const updateMotion = () => {
-      const maxMoveAmount = 150;
-      const baseDuration = 1.25;
-      const inertiaFactors = [0.9, 0.75, 0.65, 0.55];
+      const maxMoveAmount = 185;
+      const baseDuration = 0.72;
+      const inertiaFactors = [0.42, 0.34, 0.28, 0.22];
       const viewportWidth = Math.max(window.innerWidth, 1);
-      const introDuration = 3000;
+      const introDuration = 1500;
       const introElapsed = performance.now() - introStartedAtRef.current;
       const introProgress = Math.min(Math.max(introElapsed / introDuration, 0), 1);
-      const introDrift = Math.sin(introProgress * Math.PI) * 104;
+      const introDrift = Math.sin(introProgress * Math.PI) * 132;
       const isIntroActive = introProgress < 1;
 
       rowRefs.current.forEach((row, index) => {
@@ -37,8 +37,8 @@ const GridMotion = ({ items = [], gradientColor = '#050607' }) => {
         const moveAmount = isIntroActive ? introMoveAmount : mouseMoveAmount;
         gsap.to(row, {
           x: moveAmount,
-          duration: isIntroActive ? 0.78 : baseDuration + inertiaFactors[index % inertiaFactors.length],
-          ease: isIntroActive ? 'sine.inOut' : 'power3.out',
+          duration: isIntroActive ? 0.36 : baseDuration + inertiaFactors[index % inertiaFactors.length],
+          ease: isIntroActive ? 'power2.inOut' : 'power3.out',
           overwrite: 'auto',
         });
       });

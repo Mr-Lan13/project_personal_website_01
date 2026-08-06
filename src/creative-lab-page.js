@@ -1,49 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GridMotion from './GridMotion.js';
-import projects from './project-data.js';
+import { labSlotMap } from './creative-lab-data.js';
 import './creative-lab-page.css';
 
 const h = React.createElement;
 
-const zpProjects = {
-  8: {
-    title: 'ZP Visual 01',
-    type: '个人作品 / 视觉实验',
-    image: './assets/zp1.png',
-    href: 'mailto:lan.design@email.com?subject=ZP%20Visual%2001',
-    desc: 'ZP 系列视觉作品展示。',
-  },
-  12: {
-    title: 'ZP Visual 02',
-    type: '个人作品 / 视觉实验',
-    image: './assets/zp2.png',
-    href: 'mailto:lan.design@email.com?subject=ZP%20Visual%2002',
-    desc: 'ZP 系列视觉作品展示。',
-  },
-  17: {
-    title: 'ZP Visual 03',
-    type: '个人作品 / 视觉实验',
-    image: './assets/zp3.png',
-    href: 'mailto:lan.design@email.com?subject=ZP%20Visual%2003',
-    desc: 'ZP 系列视觉作品展示。',
-  },
-};
+function createWorkCard(work) {
+  const hasImage = Boolean(work.image);
+
+  return h(
+    'a',
+    {
+      className: `grid-project-link${hasImage ? '' : ' grid-project-link--pending'}`,
+      href: `./creative-work.html?id=${encodeURIComponent(work.id)}`,
+      title: hasImage ? work.desc : '作品图等待放入',
+      'aria-label': hasImage ? `查看作品 ${work.title}` : `${work.title}，等待中`,
+    },
+    hasImage
+      ? h('img', { src: work.image, alt: `${work.title} 创意实验项目封面` })
+      : h(
+          'span',
+          { className: 'grid-project-placeholder', 'aria-hidden': true },
+          h('b', null, work.number),
+          h('small', null, 'OPEN'),
+        ),
+    h(
+      'span',
+      { className: 'grid-project-label' },
+      h('strong', null, work.title),
+      h('span', null, work.type),
+    ),
+  );
+}
 
 function CreativeLabPage() {
   const gridItems = Array.from({ length: 28 }, (_, index) => {
-    const project = zpProjects[index] || projects[index % projects.length];
-    return h(
-      'a',
-      {
-        className: 'grid-project-link',
-        href: project.href,
-        title: project.desc,
-        'aria-label': `查看并咨询 ${project.title}`,
-      },
-      h('img', { src: project.image, alt: `${project.title} 创意实验项目封面` }),
-      h('span', { className: 'grid-project-label' }, h('strong', null, project.title), h('span', null, project.type)),
-    );
+    const work = labSlotMap[index];
+    return work ? createWorkCard(work) : null;
   });
 
   return h(
@@ -56,7 +50,7 @@ function CreativeLabPage() {
       { className: 'creative-lab-heading' },
       h('p', null, 'Creative Lab'),
       h('h1', null, '创意实验室'),
-      h('span', null, '不要让创意死于清晨，不要让技术隐于表达'),
+      h('span', null, '点击任意作品框进入独立展示页，未放入图片的作品会先显示等待中。'),
     ),
   );
 }
