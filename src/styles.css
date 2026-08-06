@@ -1111,16 +1111,17 @@ a {
 
 .click-stack-copy {
   align-self: center;
-  max-width: 520px;
+  max-width: 640px;
   animation: stack-copy-enter 420ms cubic-bezier(0.2, 0.8, 0.18, 1) both;
 }
 
 .click-stack-copy h2 {
   margin: 0;
   color: var(--text);
-  font-size: clamp(54px, 5.2vw, 82px);
+  font-size: clamp(38px, 3.25vw, 56px);
   line-height: 0.95;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
 }
 
 .click-stack-stage {
