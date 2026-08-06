@@ -77,11 +77,9 @@ const advantageTransformItems = [
 const insightNodes = [
   { label: '表面观点', note: '先接住直接表达出来的想法' },
   { label: '真实冲突', note: '识别观点背后的矛盾与卡点' },
-  { label: '理念厘清', note: '把模糊判断变成清晰方向' },
+  { label: '理念厘清', note: '把模糊判断变成团队共识' },
   { label: '品牌方向', note: '确认气质、边界和表达策略' },
   { label: '关键问题', note: '找到最需要解决的核心问题' },
-  { label: '团队共识', note: '让讨论进入同一语境' },
-  { label: '方案边界', note: '明确什么该做、什么先不做' },
   { label: '下一步', note: '把洞察转成可执行任务' },
 ];
 

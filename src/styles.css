@@ -1618,7 +1618,7 @@ a {
 .stack-workflow {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   align-content: center;
   width: 100%;
@@ -2167,7 +2167,7 @@ a {
   }
 
   .stack-workflow {
-    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
     gap: 10px;
     overflow-x: auto;
     padding-bottom: 6px;
