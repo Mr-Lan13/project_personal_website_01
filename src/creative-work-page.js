@@ -13,7 +13,8 @@ function getCurrentWork() {
 
 function CreativeWorkPage() {
   const work = getCurrentWork();
-  const hasImage = Boolean(work.image);
+  const isWaiting = work.id.startsWith('waiting-');
+  const hasImage = Boolean(work.image) && !isWaiting;
 
   return h(
     'main',

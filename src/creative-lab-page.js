@@ -7,7 +7,8 @@ import './creative-lab-page.css';
 const h = React.createElement;
 
 function createWorkCard(work) {
-  const hasDetailImage = Boolean(work.image);
+  const isWaiting = work.id.startsWith('waiting-');
+  const hasDetailImage = Boolean(work.image) && !isWaiting;
   const thumbnail = work.thumbnail || work.image;
   const hasThumbnail = Boolean(thumbnail);
 
