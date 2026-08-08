@@ -229,7 +229,7 @@ function Contact() {
       { className: 'page-shell contact-inner' },
       h('p', { className: 'section-kicker' }, 'Contact'),
       h('h2', null, '让作品、产品和 AI 创意流程进入下一轮迭代。'),
-      h('p', null, '当前联系方式为占位内容，可替换为你的真实邮箱、微信、LinkedIn 或作品集 PDF。'),
+      h('p', null, '这条消息并没有什么用，只是觉得放在这里页面比较有层次，记得看看上面发光的'),
       h(
         'div',
         { className: 'contact-actions' },

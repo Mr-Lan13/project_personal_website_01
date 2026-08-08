@@ -8,9 +8,15 @@ const revealGroups = [
     step: 110,
   },
   {
-    selector: '.experience .section-kicker, .experience h2, .portrait-frame, .palette-card',
+    selector: '.experience .section-kicker, .experience h2, .portrait-frame',
     effect: 'reveal-up',
     step: 55,
+  },
+  {
+    selector: '.palette-card',
+    effect: 'reveal-up',
+    baseDelay: 0,
+    step: 45,
   },
   {
     selector: '.strengths .section-kicker, .strengths h2, .strength-lede, .click-stack-shell',
@@ -32,7 +38,7 @@ function setupRevealAnimations() {
       if (elements.has(element)) return;
 
       element.classList.add('reveal-item', effect);
-      element.style.setProperty('--reveal-delay', `${Math.min(baseDelay + index * step, 520)}ms`);
+      element.style.setProperty('--reveal-delay', `${Math.min(baseDelay + index * step, 260)}ms`);
       elements.add(element);
     });
   });

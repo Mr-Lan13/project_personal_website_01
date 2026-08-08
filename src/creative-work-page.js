@@ -16,10 +16,6 @@ function clampIndex(index, length) {
   return (index + length) % length;
 }
 
-function formatSlideNumber(value, total) {
-  return `${String(value).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
-}
-
 function CreativeWorkPage() {
   const work = getCurrentWork();
   const isWaiting = work.id.startsWith('waiting-');
@@ -175,21 +171,15 @@ function CreativeWorkPage() {
             canSlide
               ? h(
                   'div',
-                  { className: 'creative-work-progress', role: 'group', 'aria-label': `图片进度 ${activeIndex + 1} / ${slides.length}` },
-                  h('span', { className: 'creative-work-progress-label' }, formatSlideNumber(activeIndex + 1, slides.length)),
-                  h(
-                    'div',
-                    { className: 'creative-work-progress-dots' },
-                    slides.map((slide, index) =>
-                      h('button', {
-                        type: 'button',
-                        key: slide + index,
-                        className: `creative-work-progress-dot${index === activeIndex ? ' is-active' : ''}`,
-                        onClick: () => goToSlide(index),
-                        'aria-label': `切换到第 ${index + 1} 张图片`,
-                        'aria-current': index === activeIndex ? 'true' : undefined,
-                      }),
-                    ),
+                  { className: 'creative-work-progress', role: 'progressbar', 'aria-label': `图片进度 ${activeIndex + 1} / ${slides.length}`, 'aria-valuemin': 0, 'aria-valuemax': slides.length - 1, 'aria-valuenow': activeIndex },
+                  slides.map((slide, index) =>
+                    h('button', {
+                      type: 'button',
+                      key: slide + index,
+                      className: `creative-work-progress-dot${index === activeIndex ? ' is-active' : ''}`,
+                      onClick: () => goToSlide(index),
+                      'aria-label': `切换到第 ${index + 1} 张图片`,
+                    }),
                   ),
                 )
               : null,

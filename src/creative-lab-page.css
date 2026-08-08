@@ -49,31 +49,37 @@ a {
 
 .creative-lab-back {
   position: absolute;
-  top: 28px;
+  bottom: 36px;
   right: max(48px, calc((100vw - 1700px) / 2));
   z-index: 4;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   padding: 0;
-  border: 1px solid rgba(245, 245, 238, 0.9);
+  border: 1.5px solid rgba(245, 245, 238, 0.9);
   border-radius: 50%;
-  background: rgba(5, 7, 8, 0.78);
+  background: rgba(5, 7, 8, 0.82);
   color: #f5f5ee;
-  font-size: 25px;
-  font-weight: 500;
   line-height: 1;
   box-shadow:
-    0 10px 30px rgba(5, 7, 8, 0.26),
-    0 0 0 1px rgba(245, 245, 238, 0.08) inset;
+    0 12px 36px rgba(5, 7, 8, 0.32),
+    0 0 0 1px rgba(245, 245, 238, 0.1) inset;
   backdrop-filter: blur(8px);
   transition:
     border-color 180ms ease,
     background 180ms ease,
     color 180ms ease,
-    transform 180ms ease;
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.creative-lab-back-icon {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+  transition: filter 180ms ease;
 }
 
 .creative-lab-back:hover,
@@ -83,8 +89,13 @@ a {
   color: #06100e;
   transform: translateY(-2px);
   box-shadow:
-    0 12px 34px rgba(5, 7, 8, 0.28),
-    0 0 28px rgba(69, 224, 204, 0.52);
+    0 14px 40px rgba(5, 7, 8, 0.32),
+    0 0 32px rgba(69, 224, 204, 0.56);
+}
+
+.creative-lab-back:hover .creative-lab-back-icon,
+.creative-lab-back:focus-visible .creative-lab-back-icon {
+  filter: brightness(1.2);
 }
 
 .creative-lab-heading {
@@ -132,7 +143,7 @@ a {
     0 0 1px rgba(245, 245, 238, 0.76);
 }
 
-.creative-lab-heading > span {
+.creative-lab-heading>span {
   display: block;
   margin-top: 20px;
   color: rgba(245, 245, 238, 0.72);
@@ -144,6 +155,7 @@ a {
 @media (max-width: 1280px) {
   .creative-lab-back {
     right: 32px;
+    bottom: 28px;
   }
 
   .creative-lab-heading {

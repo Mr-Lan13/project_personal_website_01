@@ -293,40 +293,23 @@ button {
 
 .creative-work-progress {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 6px 0 2px;
-}
-
-.creative-work-progress-label {
-  color: rgba(245, 245, 238, 0.7);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.creative-work-progress-dots {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  padding: 4px 0;
 }
 
 .creative-work-progress-dot {
   flex: 0 0 auto;
-  width: 10px;
-  height: 10px;
+  width: 28px;
+  height: 4px;
   padding: 0;
   border: none;
-  border-radius: 999px;
+  border-radius: 2px;
   background: rgba(245, 245, 238, 0.18);
   cursor: pointer;
   transition:
     background 180ms ease,
-    transform 220ms ease,
     width 220ms ease,
     box-shadow 180ms ease;
 }
@@ -334,12 +317,11 @@ button {
 .creative-work-progress-dot:hover,
 .creative-work-progress-dot:focus-visible {
   background: rgba(245, 245, 238, 0.4);
-  transform: scale(1.08);
   outline: none;
 }
 
 .creative-work-progress-dot.is-active {
-  width: 28px;
+  width: 48px;
   background: var(--bright-cyan);
   box-shadow: 0 0 14px rgba(69, 224, 204, 0.42);
 }
