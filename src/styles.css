@@ -1937,10 +1937,7 @@ a {
   width: calc(100% - 48px);
   height: 1px;
   margin: 0 auto 34px;
-  background:
-    repeating-linear-gradient(90deg, rgba(245, 245, 238, 0.54) 0 7px, transparent 7px 14px) left center / 18% 1px no-repeat,
-    linear-gradient(90deg, rgba(245, 245, 238, 0.72), rgba(245, 245, 238, 0.9), rgba(245, 245, 238, 0.72)) center / 64% 1px no-repeat,
-    repeating-linear-gradient(90deg, rgba(245, 245, 238, 0.54) 0 7px, transparent 7px 14px) right center / 18% 1px no-repeat;
+  background: linear-gradient(90deg, transparent, rgba(245, 245, 238, 0.72) 6%, rgba(245, 245, 238, 0.9) 50%, rgba(245, 245, 238, 0.72) 94%, transparent);
   opacity: 0.94;
 }
 
