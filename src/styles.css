@@ -498,7 +498,7 @@ a {
 .hero .eyebrow {
   position: absolute;
   top: 4px;
-  left: calc((100vw - 100%) / -2);
+  left: calc((100vw - 100%) / -2 + 28px);
   z-index: 21;
   margin: 0;
 }
