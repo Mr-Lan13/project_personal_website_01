@@ -174,9 +174,9 @@ function Experience() {
           h(
             'div',
             { className: 'atelier-messages', 'aria-label': '设计流程消息' },
-            h('p', null, h('b', null, '01'), '视觉语言校准'),
-            h('p', null, h('b', null, '02'), 'AI 生成资产筛选'),
-            h('p', null, h('b', null, '03'), '产品体验落地'),
+            h('p', null, h('b', null, '01'), 'AdventureX-筑梦者'),
+            h('p', null, h('b', null, '02'), 'AI Hacker House-第四名'),
+            h('p', null, h('b', null, '03'), 'SingleQuest-产品设计'),
           ),
         ),
         h(
@@ -233,8 +233,68 @@ function Contact() {
       h(
         'div',
         { className: 'contact-actions' },
-        h('a', { className: 'primary-action', href: 'mailto:lan.design@email.com' }, Icon(Mail, 19), 'lan.design@email.com'),
+        h('a', { className: 'primary-action', href: 'mailto:lancelot13wdyx@163.com' }, Icon(Mail, 19), 'lancelot13wdyx@163.com'),
         h('a', { className: 'secondary-action', href: 'https://www.linkedin.com', target: '_blank', rel: 'noreferrer' }, Icon(BadgeCheck), 'LinkedIn'),
+      ),
+    ),
+  );
+}
+
+const aphorisms = [
+  'Patience is the key in life - Not by Lan',
+  "Change is only thing that won't change - Not by Lan",
+  'Salvation lies within - Not by Lan',
+];
+
+function FooterAphorism() {
+  const [aphorismIndex] = React.useState(() => Math.floor(Math.random() * aphorisms.length));
+  const [isVisible, setIsVisible] = React.useState(false);
+  const aphorismRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const node = aphorismRef.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+          setIsVisible(true);
+          observer.unobserve(node);
+        }
+      },
+      { threshold: 0.6 },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return h(
+    'div',
+    { ref: aphorismRef, className: `footer-aphorism${isVisible ? ' is-visible' : ''}` },
+    h('p', null, aphorisms[aphorismIndex]),
+  );
+}
+
+function SiteFooter() {
+  return h(
+    'footer',
+    { className: 'site-footer', role: 'contentinfo' },
+    h('div', { className: 'site-footer-line', 'aria-hidden': true }),
+    h(
+      'div',
+      { className: 'site-footer-inner' },
+      h(FooterAphorism),
+      h(
+        'div',
+        { className: 'beian-links', 'aria-label': '备案信息' },
+        h('a', { href: 'https://beian.miit.gov.cn/', target: '_blank', rel: 'noreferrer' }, '陕ICP备2026018973号-1'),
+        h(
+          'a',
+          { href: 'https://www.beian.gov.cn/portal/registerSystemInfo', target: '_blank', rel: 'noreferrer' },
+          h('img', { src: './assets/beian-icon.png', alt: '', 'aria-hidden': true }),
+          '陕公网安备61010402001074号',
+        ),
       ),
     ),
   );
@@ -251,9 +311,11 @@ function App() {
       { className: 'content-main' },
       h('div', { className: 'grainient-layer', 'aria-hidden': true }, h(Grainient)),
       h('div', { className: 'content-main-inner' }, h(Experience), h(Strengths), h(Contact)),
+      h(SiteFooter),
     ),
-    h('a', { className: 'floating-contact', href: 'mailto:lan.design@email.com', 'aria-label': '发送邮件联系 Lan' }, Icon(Sparkles), 'Offer'),
+    h('a', { className: 'floating-contact', href: 'mailto:lancelot13wdyx@163.com', 'aria-label': '发送邮件联系 Lan' }, Icon(Sparkles), 'Offer'),
   );
 }
 
 ReactDOM.render(h(App), document.getElementById('root'));
+
