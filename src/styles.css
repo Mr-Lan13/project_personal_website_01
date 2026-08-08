@@ -1937,7 +1937,10 @@ a {
   width: calc(100% - 48px);
   height: 1px;
   margin: 0 auto 34px;
-  background: linear-gradient(90deg, transparent, rgba(245, 245, 238, 0.72) 8%, rgba(245, 245, 238, 0.96) 50%, rgba(245, 245, 238, 0.72) 92%, transparent);
+  background:
+    repeating-linear-gradient(90deg, rgba(245, 245, 238, 0.54) 0 7px, transparent 7px 14px) left center / 18% 1px no-repeat,
+    linear-gradient(90deg, rgba(245, 245, 238, 0.72), rgba(245, 245, 238, 0.9), rgba(245, 245, 238, 0.72)) center / 64% 1px no-repeat,
+    repeating-linear-gradient(90deg, rgba(245, 245, 238, 0.54) 0 7px, transparent 7px 14px) right center / 18% 1px no-repeat;
   opacity: 0.94;
 }
 
@@ -1959,9 +1962,9 @@ a {
   margin: 0;
   color: rgba(245, 245, 238, 0.96);
   font-family: "Cormorant Garamond", "Songti SC", "STSong", Georgia, serif;
-  font-size: clamp(24px, 2.7vw, 46px);
+  font-size: clamp(16px, 1.18vw, 19px);
   font-style: italic;
-  line-height: 1.38;
+  line-height: 1.5;
   letter-spacing: 0.02em;
   opacity: 0;
   filter: blur(2px);
@@ -1975,9 +1978,11 @@ a {
 
 .beian-links {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 10px 22px;
 }
 
 .beian-links a {
@@ -1985,7 +1990,7 @@ a {
   align-items: center;
   gap: 8px;
   color: rgba(245, 245, 238, 0.76);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   transition: color 180ms ease, opacity 180ms ease;
 }
@@ -2000,7 +2005,7 @@ a {
   width: 18px;
   height: 18px;
   flex: 0 0 auto;
-  filter: brightness(0) invert(1);
+  object-fit: contain;
 }
 
 @media (prefers-reduced-motion: reduce) {
