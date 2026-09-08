@@ -121,19 +121,19 @@ a {
 .video-backdrop video {
   object-fit: cover;
   filter: blur(3px) brightness(0.72) saturate(0.82);
-  opacity: 0;
+  opacity: 1;
   transform: scale(1.015);
 }
 
-.video-backdrop::before,
+/* .video-backdrop::before,
 .video-backdrop::after {
   content: "";
   position: absolute;
   inset: -14%;
   pointer-events: none;
-}
+} */
 
-.video-backdrop::before {
+/* .video-backdrop::before {
   background:
     radial-gradient(ellipse at 16% 32%, rgba(78, 170, 156, 0.34), transparent 34%),
     radial-gradient(ellipse at 76% 18%, rgba(189, 168, 255, 0.16), transparent 29%),
@@ -153,9 +153,9 @@ a {
     repeating-linear-gradient(0deg, rgba(78, 170, 156, 0.028) 0 1px, transparent 1px 22px);
   mix-blend-mode: screen;
   animation: hero-generated-scan 7200ms linear infinite;
-}
+} */
 
-.hero::before {
+/* .hero::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -179,9 +179,9 @@ a {
   background-size: 72px 72px;
   filter: drop-shadow(0 0 10px rgba(78, 170, 156, 0.18));
   mask-image: linear-gradient(180deg, black, transparent 88%);
-}
+} */
 
-@keyframes hero-generated-drift {
+/* @keyframes hero-generated-drift {
   0% {
     transform: translate3d(-2.4%, -1.4%, 0) scale(1.08) rotate(0deg);
   }
@@ -203,7 +203,7 @@ a {
   to {
     transform: translate3d(3%, 2%, 0);
   }
-}
+} */
 
 .nav {
   position: fixed;

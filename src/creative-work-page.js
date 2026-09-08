@@ -153,7 +153,8 @@ function CreativeWorkPage() {
                 className: 'creative-work-image',
                 src: currentSlide,
                 alt: `${work.title} 第 ${activeIndex + 1} 张作品图`,
-                loading: 'lazy',
+                loading: 'eager',
+                fetchPriority: 'high',
                 decoding: 'async',
               }),
               h(

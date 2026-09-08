@@ -7,3 +7,6 @@ work/npm-cache/
 .env
 .env.*
 !.env.example
+public/assets/hero-background.mp4.backup-original
+work/mobile-*.png
+work/tablet-*.png

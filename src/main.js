@@ -175,8 +175,8 @@ function Experience() {
             'div',
             { className: 'atelier-messages', 'aria-label': '设计流程消息' },
             h('p', null, h('b', null, '01'), 'AdventureX-筑梦者'),
-            h('p', null, h('b', null, '02'), 'AI Hacker House-第四名'),
-            h('p', null, h('b', null, '03'), 'SingleQuest-产品设计'),
+            h('p', null, h('b', null, '02'), 'MicroEngine-导师&评委'),
+            h('p', null, h('b', null, '03'), 'AI Hacker House-第四名'),
           ),
         ),
         h(

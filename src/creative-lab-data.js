@@ -1,21 +1,24 @@
 const labWorks = [
   {
-    id: 'waiting-00',
-    title: '等待-00',
-    type: '等待作品放入中',
-    image: './assets/project-ai-system.png',
-    images: [],
-    desc: '这里还没有作品，你来的太早了。',
+    id: 'nap-world-builder',
+    title: 'NAP',
+    type: '世界生成器 / 随机地图',
+    image: './assets/lab-optimized/nap.webp',
+    images: [
+      './assets/lab-optimized/nap.webp',
+      './assets/lab-optimized/nap1.webp',
+    ],
+    desc: '用随机地形与地块规则生成可编辑地图，帮助小说、游戏和世界观设定从一张地图开始。',
   },
   {
     id: 'personal-website-01',
     title: 'Personal website',
     type: '个人作品 / 旧版网站',
-    image: './assets/personal_website1.png',
+    image: './assets/lab-optimized/personal_website1.webp',
     images: [
-      './assets/personal_website1.png',
-      './assets/personal_website2.png',
-      './assets/personal_website3.png',
+      './assets/lab-optimized/personal_website1.webp',
+      './assets/lab-optimized/personal_website2.webp',
+      './assets/lab-optimized/personal_website3.webp',
     ],
     desc: '以个人视觉探索为核心的作品展示。',
   },
@@ -23,24 +26,29 @@ const labWorks = [
     id: 'python_bug-02',
     title: 'Python bug',
     type: '爬虫/数据处理',
-    image: './assets/guling1.png',
-    images: ['./assets/guling1.png'],
+    image: './assets/lab-optimized/guling1.webp',
+    images: ['./assets/lab-optimized/guling1.webp'],
     desc: '抓取最新话题信息和热点，进行分析整理。',
   },
   {
-    id: 'waiting-03',
-    title: '等待-03',
-    type: '等待作品放入中',
-    image: './assets/project-product.png',
-    images: [],
-    desc: '这里还没有作品，你来的太早了。',
+    id: 'lens-style-vault',
+    title: 'LENS',
+    type: '风格提取 / 创作卡片',
+    image: './assets/lab-optimized/lens1.webp',
+    images: [
+      './assets/lab-optimized/lens1.webp',
+      './assets/lab-optimized/lens2.webp',
+      './assets/lab-optimized/lens3.webp',
+      './assets/lab-optimized/lens.webp',
+    ],
+    desc: '从参考图中提取色彩、构图与质感，整理为可分享、可继续用于生成创作的风格卡。',
   },
   {
     id: '3D-modeling-04',
     title: '3D modeling',
     type: '场景设计 / 3D建模',
-    image: './assets/3D_modling.png',
-    images: ['./assets/3D_modling.png'],
+    image: './assets/lab-optimized/3D_modling.webp',
+    images: ['./assets/lab-optimized/3D_modling.webp'],
     desc: '3D建模作品展示。',
   },
   {
@@ -63,11 +71,11 @@ const labWorks = [
     id: 'ai-interview-07',
     title: 'AI interview',
     type: 'AI 设计 / 面试流程',
-    image: './assets/ai_interview1.png',
+    image: './assets/lab-optimized/ai_interview1.webp',
     images: [
-      './assets/ai_interview1.png',
-      './assets/ai_interview2.png',
-      './assets/ai_interview3.png',
+      './assets/lab-optimized/ai_interview1.webp',
+      './assets/lab-optimized/ai_interview2.webp',
+      './assets/lab-optimized/ai_interview3.webp',
     ],
     desc: 'AI interview 作品展示。',
   },
@@ -75,10 +83,10 @@ const labWorks = [
     id: 'rain_night-08',
     title: 'Rain night',
     type: '场景设计/概念宣传',
-    image: './assets/rain_night1.png',
+    image: './assets/lab-optimized/rain_night1.webp',
     images: [
-      './assets/rain_night1.png',
-      './assets/rain_night2.png'
+      './assets/lab-optimized/rain_night1.webp',
+      './assets/lab-optimized/rain_night2.webp'
     ],
     desc: '场景设计作品展示。',
   },
@@ -92,7 +100,7 @@ const labWorks = [
   },
 ];
 
-export const labSlotIndexes = [8, 9, 10, 11, 12, 15, 16, 17, 18, 19];
+export const labSlotIndexes = [16, 9, 10, 11, 12, 15, 8, 17, 18, 19];
 
 export const labSlotMap = labSlotIndexes.reduce((map, slotIndex, workIndex) => {
   const work = labWorks[workIndex];

@@ -8,7 +8,7 @@ const h = React.createElement;
 
 function createWorkCard(work) {
   const isWaiting = work.id.startsWith('waiting-');
-  const cover = work.image || (Array.isArray(work.images) ? work.images[0] : '');
+  const cover = isWaiting ? '' : (work.image || (Array.isArray(work.images) ? work.images[0] : ''));
 
   return h(
     'a',
@@ -23,6 +23,7 @@ function createWorkCard(work) {
         src: cover,
         alt: `${work.title} 创意实验项目封面`,
         loading: 'lazy',
+        fetchPriority: 'low',
         decoding: 'async',
       })
       : h(
