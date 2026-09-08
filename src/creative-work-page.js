@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import labWorks, { getLabWorkById, getWorkImages } from './creative-lab-data.js';
+import MobileUnsupportedNotice from './MobileUnsupportedNotice.js';
 import './creative-work-page.css';
 
 const h = React.createElement;
@@ -100,12 +101,16 @@ function CreativeWorkPage() {
   const canSlide = slides.length > 1;
 
   return h(
-    'main',
-    { className: `creative-work-page${isWaiting ? ' creative-work-page--waiting' : ''}` },
-    h('a', { className: 'creative-work-back', href: './creative-lab.html', 'aria-label': '返回创意实验室' }, h('img', { src: './assets/icon-back.png', alt: '返回', className: 'creative-work-back-icon' })),
+    React.Fragment,
+    null,
+    h(MobileUnsupportedNotice),
     h(
-      'section',
-      { className: 'creative-work-shell' },
+      'main',
+      { className: `creative-work-page${isWaiting ? ' creative-work-page--waiting' : ''}` },
+      h('a', { className: 'creative-work-back', href: './creative-lab.html', 'aria-label': '返回创意实验室' }, h('img', { src: './assets/icon-back.png', alt: '返回', className: 'creative-work-back-icon' })),
+      h(
+        'section',
+        { className: 'creative-work-shell' },
       h(
         'aside',
         { className: 'creative-work-meta' },
@@ -185,6 +190,7 @@ function CreativeWorkPage() {
                 )
               : null,
           ),
+      ),
       ),
     ),
   );

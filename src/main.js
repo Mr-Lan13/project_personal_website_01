@@ -12,6 +12,7 @@ import Sparkles from 'lucide-react/dist/esm/icons/sparkles.js';
 import Workflow from 'lucide-react/dist/esm/icons/workflow.js';
 import ClickStack from './ClickStack.js';
 import Grainient from './Grainient.js';
+import MobileUnsupportedNotice from './MobileUnsupportedNotice.js';
 import './styles.css';
 
 const h = React.createElement;
@@ -51,10 +52,21 @@ function Icon(IconComponent, size = 18) {
 }
 
 function VideoBackdrop() {
+  const [isMobile, setIsMobile] = React.useState(() => window.matchMedia('(max-width: 767px)').matches);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    const handleChange = (event) => setIsMobile(event.matches);
+
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener?.('change', handleChange);
+    return () => mediaQuery.removeEventListener?.('change', handleChange);
+  }, []);
+
   return h(
     'div',
     { className: 'video-backdrop', 'aria-hidden': true },
-    h('video', {
+    !isMobile && h('video', {
       src: './assets/hero-background.mp4',
       poster: './assets/project-ai-system.png',
       autoPlay: true,
@@ -304,6 +316,7 @@ function App() {
   return h(
     React.Fragment,
     null,
+    h(MobileUnsupportedNotice),
     h(Nav),
     h(Hero),
     h(

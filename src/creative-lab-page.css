@@ -166,3 +166,11 @@ a {
     font-size: 64px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  html,
+  body,
+  #creative-lab-root {
+    min-width: 0;
+  }
+}

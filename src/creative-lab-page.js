@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import GridMotion from './GridMotion.js';
 import { labSlotMap } from './creative-lab-data.js';
+import MobileUnsupportedNotice from './MobileUnsupportedNotice.js';
 import './creative-lab-page.css';
 
 const h = React.createElement;
@@ -48,16 +49,21 @@ function CreativeLabPage() {
   });
 
   return h(
-    'main',
-    { className: 'creative-lab-page' },
-    h('div', { className: 'creative-lab-grid', 'aria-hidden': false }, h(GridMotion, { items: gridItems, gradientColor: '#45e0cc' })),
-    h('a', { className: 'creative-lab-back', href: './index.html', 'aria-label': '返回首页' }, h('img', { src: './assets/icon-back.png', alt: '返回', className: 'creative-lab-back-icon' })),
+    React.Fragment,
+    null,
+    h(MobileUnsupportedNotice),
     h(
-      'section',
-      { className: 'creative-lab-heading' },
-      h('p', null, 'Creative Lab'),
-      h('h1', null, '创意实验室'),
-      h('span', null, '不要让想法死在清晨，不要让创意隐于表达。'),
+      'main',
+      { className: 'creative-lab-page' },
+      h('div', { className: 'creative-lab-grid', 'aria-hidden': false }, h(GridMotion, { items: gridItems, gradientColor: '#45e0cc' })),
+      h('a', { className: 'creative-lab-back', href: './index.html', 'aria-label': '返回首页' }, h('img', { src: './assets/icon-back.png', alt: '返回', className: 'creative-lab-back-icon' })),
+      h(
+        'section',
+        { className: 'creative-lab-heading' },
+        h('p', null, 'Creative Lab'),
+        h('h1', null, '创意实验室'),
+        h('span', null, '不要让想法死在清晨，不要让创意隐于表达。'),
+      ),
     ),
   );
 }
