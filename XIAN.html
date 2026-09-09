@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>长安食肆 · 西安觅食指南</title>
+<meta name="description" content="一份本地人口碑整理的西安觅食指南：早市、夜市、街巷老店、伴手礼与实用贴士。">
+<style>
+  :root{
+    --paper:#f5efe1;
+    --paper-card:#fbf6ea;
+    --paper-deep:#eee4cd;
+    --ink:#2b251c;
+    --ink-soft:#6f6452;
+    --line:#c9b995;
+    --red:#a83a28;
+    --red-deep:#8a2f20;
+    --gold:#8a6a3b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Noto Serif SC","Source Han Serif SC","思源宋体","STZhongsong","华文中宋","SimSun","宋体",serif;
+    color:var(--ink);
+    line-height:1.95;
+    background:
+      repeating-linear-gradient(0deg, rgba(139,110,64,.028) 0 1px, transparent 1px 26px),
+      radial-gradient(ellipse 120% 60% at 50% 0%, rgba(255,255,255,.55), transparent 62%),
+      var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  .paper{max-width:1060px;margin:0 auto;padding:34px 28px 60px;}
+
+  /* ========== 报头 ========== */
+  .masthead{
+    position:relative;
+    text-align:center;
+    border-top:5px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding:26px 20px 22px;
+  }
+  .masthead::before{
+    content:"";display:block;position:absolute;top:7px;left:0;right:0;border-top:1px solid var(--ink);
+  }
+  .mast-meta{
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:.8rem;color:var(--ink-soft);letter-spacing:.22em;
+    padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:18px;
+  }
+  .masthead h1{
+    font-size:clamp(3rem,9vw,5.4rem);
+    font-weight:900;letter-spacing:.16em;
+    color:var(--ink);
+    text-indent:.16em; /* 抵消末字间距 */
+  }
+  .mast-sub{
+    margin-top:6px;font-size:.95rem;letter-spacing:.5em;color:var(--red);
+    text-indent:.5em;
+  }
+  .mast-en{
+    margin-top:8px;font-size:.68rem;letter-spacing:.34em;color:var(--ink-soft);
+  }
+  .seal{
+    position:absolute;right:34px;bottom:20px;
+    width:64px;height:64px;
+    border:2.5px solid var(--red);border-radius:6px;
+    display:grid;grid-template-columns:1fr 1fr;place-items:center;
+    transform:rotate(-7deg);opacity:.88;
+    padding:5px;
+  }
+  .seal span{
+    color:var(--red);font-weight:900;font-size:1.28rem;line-height:1;
+  }
+  /* 印章做旧 */
+  .seal::after{
+    content:"";position:absolute;inset:0;border-radius:6px;
+    background:radial-gradient(circle at 30% 40%, transparent 55%, rgba(168,58,40,.18));
+  }
+
+  /* ========== 栏目导航 ========== */
+  nav.toc{
+    position:sticky;top:0;z-index:60;
+    display:flex;justify-content:center;flex-wrap:wrap;gap:2px 6px;
+    background:rgba(245,239,225,.96);
+    backdrop-filter:blur(4px);
+    border-bottom:1px solid var(--line);
+    padding:10px 8px;margin:0 -28px;
+  }
+  nav.toc a{
+    text-decoration:none;color:var(--ink-soft);
+    font-size:.88rem;letter-spacing:.14em;
+    padding:2px 14px;border-bottom:2px solid transparent;
+    transition:color .2s,border-color .2s;
+  }
+  nav.toc a:hover{color:var(--red);}
+  nav.toc a.active{color:var(--red);border-color:var(--red);font-weight:700;}
+
+  /* ========== 编者按 ========== */
+  .editor-note{
+    margin:34px 0 0;
+    display:flex;gap:18px;align-items:flex-start;
+  }
+  .editor-note .label{
+    flex:none;writing-mode:vertical-rl;
+    font-weight:900;letter-spacing:.3em;color:var(--paper);
+    background:var(--red);padding:12px 7px;font-size:.86rem;
+  }
+  .editor-note p{
+    padding:10px 4px 4px 0;color:var(--ink-soft);font-size:.98rem;
+  }
+  .editor-note p b{color:var(--ink);}
+
+  /* ========== 版面通用 ========== */
+  section.ban{
+    margin-top:46px;padding-top:8px;
+    border-top:3px double var(--ink-soft);
+  }
+  .ban-head{
+    display:flex;align-items:center;gap:18px;
+    margin-bottom:22px;
+  }
+  .ban-no{
+    flex:none;width:46px;height:46px;
+    border:1.5px solid var(--red);border-radius:4px;
+    display:grid;place-items:center;
+    color:var(--red);font-weight:900;font-size:1.3rem;
+  }
+  .ban-head h2{
+    font-size:clamp(1.5rem,3.4vw,2.1rem);
+    font-weight:900;letter-spacing:.08em;line-height:1.4;
+  }
+  .ban-sub{
+    font-size:.82rem;color:var(--ink-soft);letter-spacing:.24em;margin-top:2px;
+  }
+  .ban-head .spacer{flex:1;}
+  .side-tag{
+    flex:none;writing-mode:vertical-rl;
+    font-weight:900;letter-spacing:.28em;color:var(--paper);
+    background:var(--ink);padding:14px 8px;font-size:.95rem;
+    align-self:stretch;display:grid;place-items:center;
+  }
+
+  /* ========== 早市 ========== */
+  .chips{display:flex;flex-wrap:wrap;gap:12px;margin:6px 0 18px;}
+  .chip{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:9px 20px;border:1px solid var(--ink);border-radius:999px;
+    background:var(--paper-card);font-weight:700;letter-spacing:.1em;font-size:.95rem;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .chip i{
+    width:7px;height:7px;background:var(--red);border-radius:50%;flex:none;font-style:normal;
+  }
+  .chip:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(43,37,28,.12);}
+  .chip small{font-weight:400;color:var(--ink-soft);letter-spacing:.02em;}
+
+  .tixing{
+    background:var(--paper-deep);
+    border-left:4px solid var(--red);
+    padding:14px 20px;margin:18px 0 24px;
+    color:var(--ink);font-size:.95rem;
+  }
+  .tixing .tag{
+    display:inline-block;background:var(--red);color:#f8f2e4;
+    font-size:.72rem;letter-spacing:.18em;padding:2px 10px;margin-bottom:6px;
+  }
+  .snack-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:12px;
+  }
+  .snack{
+    border:1px solid var(--line);background:var(--paper-card);
+    padding:13px 16px;position:relative;
+  }
+  .snack::before{
+    content:"";position:absolute;top:0;left:0;width:26px;height:3px;background:var(--red);
+  }
+  .snack b{display:block;font-size:1.02rem;letter-spacing:.06em;}
+  .snack small{color:var(--ink-soft);font-size:.8rem;line-height:1.6;display:block;margin-top:2px;}
+
+  /* ========== 夜市 ========== */
+  .lead{
+    font-size:1.05rem;max-width:44em;margin-bottom:22px;
+  }
+  .lead b{color:var(--red);}
+  .alt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+  .alt{
+    border:1px solid var(--line);background:var(--paper-card);padding:18px 20px;
+    border-top:3px solid var(--ink);
+  }
+  .alt h3{font-size:1.08rem;letter-spacing:.08em;margin-bottom:6px;}
+  .alt p{font-size:.88rem;color:var(--ink-soft);line-height:1.8;}
+
+  /* ========== 老店 ========== */
+  .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:14px;}
+  .shop{
+    border:1px solid var(--line);background:var(--paper-card);
+    padding:16px 19px;position:relative;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .shop:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(43,37,28,.1);}
+  .shop-street{
+    font-size:.76rem;color:var(--red);font-weight:700;letter-spacing:.16em;
+    margin-bottom:3px;
+  }
+  .shop-name{font-size:1.14rem;font-weight:900;letter-spacing:.05em;}
+  .shop-desc{font-size:.87rem;color:var(--ink-soft);margin-top:5px;line-height:1.75;}
+  .badge{
+    display:inline-block;background:var(--red);color:#f8f2e4;
+    font-size:.7rem;letter-spacing:.1em;padding:2px 9px;border-radius:2px;
+    margin-left:7px;vertical-align:2px;white-space:nowrap;
+  }
+  .badge.ghost{
+    background:transparent;color:var(--red);border:1px solid var(--red);
+  }
+
+  /* ========== 伴手礼 ========== */
+  .gift-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+  .gift{
+    border:1px solid var(--line);background:var(--paper-card);
+    padding:20px 22px;
+  }
+  .gift h3{
+    font-size:1.12rem;letter-spacing:.12em;font-weight:900;
+    padding-bottom:10px;margin-bottom:14px;
+    border-bottom:2px solid var(--ink);
+    display:flex;align-items:center;gap:10px;
+  }
+  .gift h3 em{
+    font-style:normal;font-size:.7rem;color:var(--gold);letter-spacing:.2em;font-weight:400;
+  }
+  .gift .grp{
+    font-size:.76rem;color:var(--red);letter-spacing:.2em;font-weight:700;
+    margin:12px 0 6px;
+  }
+  .gift .grp:first-of-type{margin-top:0;}
+  .gift li{
+    list-style:none;padding:7px 0 7px 16px;position:relative;
+    border-bottom:1px dashed var(--line);font-size:.93rem;
+  }
+  .gift li:last-child{border-bottom:none;}
+  .gift li::before{
+    content:"";position:absolute;left:0;top:1.05em;width:6px;height:6px;
+    background:var(--red);transform:rotate(45deg);
+  }
+  .gift li small{display:block;color:var(--ink-soft);font-size:.8rem;line-height:1.65;}
+  .price{color:var(--red);font-weight:900;white-space:nowrap;}
+
+  /* ========== 碎碎念 ========== */
+  .notes{display:grid;gap:14px;}
+  .note{
+    display:flex;gap:16px;align-items:flex-start;
+    border:1px solid var(--line);background:var(--paper-card);padding:16px 20px;
+  }
+  .note .no{
+    flex:none;width:30px;height:30px;border-radius:50%;
+    border:1.5px solid var(--red);color:var(--red);font-weight:900;
+    display:grid;place-items:center;font-size:.9rem;margin-top:4px;
+  }
+  .note p{font-size:.97rem;}
+  .note p b{color:var(--red);}
+
+  /* ========== 店铺索引 ========== */
+  .table-wrap{overflow-x:auto;border:1px solid var(--ink);}
+  table.index{
+    width:100%;border-collapse:collapse;min-width:640px;
+    background:var(--paper-card);
+  }
+  table.index th{
+    background:var(--ink);color:var(--paper);
+    font-weight:700;letter-spacing:.22em;font-size:.86rem;
+    padding:11px 16px;text-align:left;white-space:nowrap;
+  }
+  table.index td{
+    padding:11px 16px;border-bottom:1px solid var(--line);
+    font-size:.93rem;vertical-align:top;
+  }
+  table.index tr:last-child td{border-bottom:none;}
+  table.index tbody tr:hover{background:rgba(168,58,40,.05);}
+  td.t-name{font-weight:900;letter-spacing:.04em;white-space:nowrap;}
+  td.t-name small{
+    display:block;font-weight:400;color:var(--ink-soft);
+    font-size:.74rem;letter-spacing:.06em;white-space:normal;line-height:1.5;
+  }
+  td.t-cat{color:var(--red);font-size:.84rem;white-space:nowrap;letter-spacing:.06em;}
+  td.t-addr{color:var(--ink-soft);font-size:.87rem;}
+  a.map{
+    color:var(--red);text-decoration:none;border-bottom:1px dotted var(--red);
+    font-size:.84rem;white-space:nowrap;letter-spacing:.1em;
+  }
+  a.map:hover{background:var(--red);color:#f8f2e4;}
+
+  /* ========== 页脚 ========== */
+  footer{
+    margin-top:56px;padding-top:18px;
+    border-top:3px double var(--ink-soft);
+    text-align:center;color:var(--ink-soft);font-size:.82rem;letter-spacing:.14em;
+    line-height:2.1;
+  }
+  footer .orn{color:var(--red);letter-spacing:.6em;display:block;margin-bottom:6px;}
+
+  /* ========== 客栈门面 · 视觉增强 ========== */
+  :root{
+    --paper:#f4e6c8;
+    --paper-card:#fffaf0;
+    --paper-deep:#ead6ac;
+    --ink:#211b15;
+    --ink-soft:#685844;
+    --line:#c8aa78;
+    --red:#a53225;
+    --red-deep:#772319;
+    --gold:#8c672f;
+    --wood:#4b2c1b;
+    --wood-light:#7a4a2b;
+    --white:#fffdf8;
+  }
+  body{
+    position:relative;
+    min-width:320px;
+    padding-inline:76px;
+    background:
+      linear-gradient(90deg,rgba(83,48,25,.06) 1px,transparent 1px) 0 0/42px 100%,
+      repeating-linear-gradient(0deg,rgba(139,110,64,.035) 0 1px,transparent 1px 25px),
+      radial-gradient(ellipse 100% 50% at 50% 0%,rgba(255,255,255,.72),transparent 64%),
+      var(--paper);
+  }
+  body::before,
+  body::after{
+    content:"";
+    position:fixed;
+    z-index:80;
+    top:0;bottom:0;
+    width:58px;
+    pointer-events:none;
+    border-inline:4px solid #2b160d;
+    box-shadow:inset 0 0 0 2px #a46b3d,0 0 18px rgba(32,20,12,.28);
+    background:
+      radial-gradient(circle at 50% 10px,transparent 0 8px,#b47a49 8px 10px,transparent 10px 17px,#a53225 17px 19px,transparent 19px) 50% 16px/42px 62px repeat-y,
+      linear-gradient(45deg,transparent 42%,rgba(221,166,98,.38) 43% 48%,transparent 49%) 0 0/28px 28px,
+      linear-gradient(-45deg,transparent 42%,rgba(221,166,98,.25) 43% 48%,transparent 49%) 0 0/28px 28px,
+      repeating-linear-gradient(90deg,#3a2114 0 5px,#58331e 5px 14px,#6b4025 14px 18px,#442618 18px 26px);
+  }
+  body::before{left:0;}
+  body::after{right:0;transform:scaleX(-1);}
+  .paper{
+    max-width:1120px;
+    min-height:100vh;
+    padding:28px 34px 68px;
+    background:rgba(255,250,240,.52);
+    border-inline:1px solid rgba(75,44,27,.22);
+    box-shadow:0 0 36px rgba(75,44,27,.09);
+  }
+  .masthead{
+    overflow:hidden;
+    border-top:12px solid var(--wood);
+    border-bottom:3px solid var(--wood);
+    padding:30px 22px 28px;
+    background:
+      linear-gradient(90deg,transparent 0 4%,rgba(165,50,37,.065) 4% 96%,transparent 96%),
+      repeating-linear-gradient(90deg,rgba(75,44,27,.035) 0 1px,transparent 1px 12px);
+  }
+  .masthead::before{
+    top:5px;
+    height:8px;
+    border:0;
+    background:linear-gradient(135deg,transparent 45%,var(--gold) 46% 52%,transparent 53%) 0 0/22px 8px repeat-x;
+    opacity:.78;
+  }
+  .masthead::after{
+    content:"";
+    position:absolute;
+    inset:56px 7% 13px;
+    border:1px solid rgba(140,103,47,.42);
+    border-radius:50% 50% 2px 2px/18px 18px 2px 2px;
+    pointer-events:none;
+  }
+  .mast-kicker{
+    position:relative;z-index:1;
+    display:inline-flex;align-items:center;gap:12px;
+    margin:0 auto 4px;
+    color:var(--red-deep);font-size:.76rem;font-weight:700;letter-spacing:.34em;
+  }
+  .mast-kicker::before,.mast-kicker::after{content:"";width:34px;height:1px;background:var(--red);}
+  .masthead h1{
+    position:relative;z-index:1;
+    margin:.05em 0 .08em;
+    font-family:"FZShuTi","FZSTK","STKaiti","KaiTi","楷体",serif;
+    font-size:clamp(4rem,9vw,6.8rem);
+    font-weight:400;
+    line-height:1.04;
+    letter-spacing:.18em;
+    text-indent:.18em;
+    color:#1d1712;
+    text-shadow:none;
+    transform:rotate(-1deg);
+  }
+  .mast-sub,.mast-en,.mast-meta{position:relative;z-index:1;}
+  .mast-sub{font-weight:800;color:var(--red-deep);}
+  .seal{z-index:2;background:rgba(255,250,240,.7);box-shadow:0 2px 0 rgba(119,35,25,.12);}
+  nav.toc{
+    top:0;
+    gap:8px;
+    padding:12px 18px 13px;
+    margin:0 -34px;
+    background:rgba(244,230,200,.96);
+    border-top:1px solid rgba(255,255,255,.7);
+    border-bottom:3px solid var(--wood);
+    box-shadow:0 5px 14px rgba(50,31,18,.12);
+  }
+  nav.toc::before,nav.toc::after{
+    content:"";align-self:center;width:22px;height:22px;
+    border:2px solid var(--red);transform:rotate(45deg) scale(.62);
+    box-shadow:inset 0 0 0 4px var(--paper),inset 0 0 0 6px var(--red);
+  }
+  nav.toc a{
+    position:relative;
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:112px;min-height:40px;
+    padding:7px 17px;
+    border:1px solid var(--red-deep);
+    border-bottom:3px solid var(--red-deep);
+    border-radius:3px;
+    color:var(--white);
+    background:linear-gradient(#b64232,#922b20);
+    box-shadow:inset 0 1px rgba(255,255,255,.22),0 2px 4px rgba(57,29,17,.18);
+    font-size:.9rem;font-weight:800;letter-spacing:.13em;
+    transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease;
+  }
+  nav.toc a::before{content:"";position:absolute;inset:3px;border:1px solid rgba(255,242,218,.34);pointer-events:none;}
+  nav.toc a:hover{
+    color:#fff;background:linear-gradient(#c04a38,#9f3024);
+    transform:translateY(-2px);box-shadow:inset 0 1px rgba(255,255,255,.28),0 5px 9px rgba(57,29,17,.22);
+  }
+  nav.toc a:active{transform:translateY(1px);box-shadow:inset 0 1px rgba(255,255,255,.2),0 1px 2px rgba(57,29,17,.18);}
+  nav.toc a:focus-visible{outline:3px solid #211b15;outline-offset:3px;}
+  nav.toc a.active{
+    color:var(--ink);background:var(--white);border-color:var(--red);font-weight:900;
+    box-shadow:inset 0 0 0 2px var(--paper),inset 0 0 0 3px var(--red),0 3px 7px rgba(57,29,17,.16);
+  }
+  section.ban{scroll-margin-top:92px;border-top-color:var(--wood);}
+  .ban-head{position:relative;padding:8px 10px 8px 0;border-bottom:1px solid rgba(140,103,47,.4);}
+  .ban-head::after{
+    content:"";position:absolute;left:64px;right:0;bottom:-4px;height:3px;
+    background:repeating-linear-gradient(90deg,var(--red) 0 8px,transparent 8px 14px);opacity:.65;
+  }
+  .ban-no{
+    width:52px;height:52px;border:2px solid var(--red);background:var(--white);
+    box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 4px var(--red);
+  }
+  .side-tag{
+    min-width:42px;background:linear-gradient(var(--wood-light),var(--wood));
+    border:1px solid #2b160d;box-shadow:inset 0 0 0 2px rgba(239,201,140,.28);
+  }
+  .editor-note .label{background:linear-gradient(var(--red),var(--red-deep));box-shadow:3px 3px 0 var(--wood);}
+  .chip{
+    border-color:var(--red-deep);border-radius:4px;background:var(--white);cursor:default;
+    box-shadow:0 2px 0 rgba(119,35,25,.15);
+  }
+  .chip:hover{border-color:var(--red);color:var(--red-deep);box-shadow:0 5px 12px rgba(76,44,27,.15);}
+  .snack,.alt,.shop,.gift,.note{border-color:rgba(140,103,47,.58);background:rgba(255,253,248,.84);box-shadow:0 2px 0 rgba(75,44,27,.06);}
+  .alt{border-top-color:var(--red-deep);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+  .alt:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:0 8px 18px rgba(43,37,28,.11);}
+  .shop{border-left:4px solid var(--wood);}
+  .shop:hover{border-color:var(--red);}
+  .tixing{border-left-width:6px;box-shadow:inset 0 0 0 1px rgba(140,103,47,.28);}
+  .table-wrap{border:2px solid var(--wood);box-shadow:0 4px 12px rgba(50,31,18,.1);}
+  table.index th{background:var(--wood);}
+  a.map{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:34px;padding:3px 11px;border:1px solid var(--red);border-radius:3px;
+    font-weight:800;background:var(--white);transition:background .15s,color .15s,transform .15s;
+  }
+  a.map:hover{transform:translateY(-1px);background:var(--red);color:var(--white);}
+  a.map:focus-visible{outline:3px solid var(--ink);outline-offset:2px;}
+  footer::before{
+    content:"客来长安 · 食在街巷";display:block;margin:0 auto 14px;
+    width:max-content;max-width:100%;padding:4px 18px;color:var(--paper);
+    background:var(--wood);border-inline:5px double var(--gold);letter-spacing:.3em;
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;}
+  }
+
+  /* ========== 响应式 ========== */
+  @media (max-width:680px){
+    body{padding-inline:0;}
+    body::before,body::after{display:none;}
+    .paper{padding:18px 16px 44px;border:0;}
+    nav.toc{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:10px 16px;scrollbar-width:none;}
+    nav.toc::-webkit-scrollbar{display:none;}
+    nav.toc::before,nav.toc::after{display:none;}
+    nav.toc a{min-width:98px;min-height:38px;padding:6px 12px;}
+    .mast-meta{font-size:.68rem;letter-spacing:.1em;}
+    .mast-meta span:first-child{display:none;}
+    .masthead{padding-inline:10px;}
+    .masthead h1{font-size:clamp(3.2rem,18vw,4.8rem);letter-spacing:.1em;text-indent:.1em;}
+    .seal{right:14px;width:52px;height:52px;}
+    .seal span{font-size:1rem;}
+    .side-tag{display:none;}
+    .ban-head{gap:12px;}
+  }
+
+  @media (min-width:681px) and (max-width:1180px){
+    body{padding-inline:24px;}
+    body::before,body::after{width:18px;opacity:.88;}
+  }
+
+  /* ========== 打印 ========== */
+  @media print{
+    body{background:#fff;}
+    nav.toc{display:none;}
+    .paper{max-width:100%;padding:10px;}
+    .shop:hover,.chip:hover{transform:none;box-shadow:none;}
+    section.ban{break-inside:auto;}
+    .shop,.snack,.gift,.note{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <!-- ===================== 报头 ===================== -->
+  <header class="masthead">
+    <div class="mast-meta">
+      <span>本地人口碑整理 · 不追网红</span>
+      <span>二〇二六年九月 · 白露</span>
+      <span>第 壹 期</span>
+    </div>
+    <div class="mast-kicker">长安城内 · 寻味客栈</div>
+    <h1>长安食肆</h1>
+    <div class="mast-sub">西安觅食特刊</div>
+    <div class="mast-en">XI'AN STREET FOOD GAZETTE</div>
+    <div class="seal" aria-hidden="true"><span>长</span><span>安</span><span>觅</span><span>食</span></div>
+  </header>
+
+  <!-- ===================== 栏目导航 ===================== -->
+  <nav class="toc" id="toc" aria-label="觅食栏目">
+    <a href="#zaoshi">壹 · 早市</a>
+    <a href="#yeshi">贰 · 夜市</a>
+    <a href="#laodian">叁 · 老店</a>
+    <a href="#banshouli">肆 · 伴手礼</a>
+    <a href="#suininian">伍 · 碎碎念</a>
+    <a href="#suyin">陆 · 店铺索引</a>
+  </nav>
+
+  <!-- ===================== 编者按 ===================== -->
+  <div class="editor-note">
+    <span class="label">编者按</span>
+    <p>
+      本页整理自一位不愿透漏姓名的本地老吃家兰某的口碑笔记：不讲排场，只记<b>哪里好吃、多少钱、几点去</b>。
+      从清晨的早市到深夜的路边摊，从一笼一元的包子到真空包装的酱牛肉——
+      都是开了许多年、街坊们用脚投票投出来的铺子。价格与店铺情况随时可能变动，出发前<b>小黑猫娘</b>请再核一核。
+    </p>
+  </div>
+
+  <!-- ===================== 壹 · 早市 ===================== -->
+  <section class="ban" id="zaoshi">
+    <div class="ban-head">
+      <span class="ban-no">壹</span>
+      <div>
+        <h2>赶早，才赶得上热乎的</h2>
+        <p class="ban-sub">早市 · 六处 · 早市小吃皆有</p>
+      </div>
+      <span class="spacer"></span>
+      <span class="side-tag">早市</span>
+    </div>
+
+    <div class="chips">
+      <span class="chip"><i></i>红专南路</span>
+      <span class="chip"><i></i>东仓门</span>
+      <span class="chip"><i></i>化工南巷</span>
+      <span class="chip"><i></i>民洁路</span>
+      <span class="chip"><i></i>西工大<small>大学南路</small></span>
+      <span class="chip"><i></i>西何家村</span>
+    </div>
+
+    <div class="tixing">
+      <span class="tag">本地人叮嘱</span><br>
+      早市 <b>9 点前结束，尽量早点去</b>；早市主要是方便市民买菜的，<b>期待不要太高</b>——
+      但热乎的小吃，从来不会缺席。
+    </div>
+
+    <div class="snack-grid">
+      <div class="snack"><b>甑 糕</b><small>糯米与红枣层层蒸透，枣香沉底</small></div>
+      <div class="snack"><b>搅 团</b><small>粗粮面搅出的稠团，浇一勺酸汤</small></div>
+      <div class="snack"><b>豆腐脑</b><small>咸口浇汁，一勺入口即化</small></div>
+      <div class="snack"><b>胡辣汤</b><small>肉丸菜蔬一锅浓稠，配饼最宜</small></div>
+      <div class="snack"><b>菜团子</b><small>皮薄馅大的时令菜团</small></div>
+      <div class="snack"><b>油 糕</b><small>烫面糖心，炸到金黄起泡</small></div>
+      <div class="snack"><b>菜盒子</b><small>合面夹馅，外皮焦脆</small></div>
+      <div class="snack"><b>豌豆黄</b><small>豌豆制成，入口即化</small></div>
+      <div class="snack"><b>浆水鱼鱼</b><small>漏勺漏出的「鱼」，浆水酸香</small></div>
+      <div class="snack"><b>油茶麻花</b><small>麻花泡进咸油茶，暖到胃里</small></div>
+      <div class="snack"><b>香酥牛肉饼</b><small>层酥裹牛肉馅，现炸现卖</small></div>
+    </div>
+  </section>
+
+  <!-- ===================== 贰 · 夜市 ===================== -->
+  <section class="ban" id="yeshi">
+    <div class="ban-head">
+      <span class="ban-no">贰</span>
+      <div>
+        <h2>这座城，没有正规夜市</h2>
+        <p class="ban-sub">夜市与美食街 · 想清楚再去</p>
+      </div>
+      <span class="spacer"></span>
+      <span class="side-tag">夜市</span>
+    </div>
+
+    <p class="lead">
+      西安从<b>创卫</b>以后就没有正规的夜市了。如今夜里能吃到的，多数是<b>自发形成的路边摊</b>；
+      再不然，就是去餐饮商铺比较密集的美食街，或者各大学周边的<b>路边摊集合</b>。
+    </p>
+
+    <div class="alt-grid">
+      <div class="alt">
+        <h3>袁家村</h3>
+        <p>店铺密集的美食街，关中小吃扎堆，一处吃遍多种风味。</p>
+      </div>
+      <div class="alt">
+        <h3>秋林公司</h3>
+        <p>老牌商厦里的小吃聚集地，本地人认的老口味。</p>
+      </div>
+      <div class="alt">
+        <h3>大学周边路边摊</h3>
+        <p>各高校门口自发形成的摊子集合，烟火气足，价格实在。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 叁 · 老店 ===================== -->
+  <section class="ban" id="laodian">
+    <div class="ban-head">
+      <span class="ban-no">叁</span>
+      <div>
+        <h2>味道散在全城</h2>
+        <p class="ban-sub">街巷老店 · 有些分散，值得专程</p>
+      </div>
+      <span class="spacer"></span>
+      <span class="side-tag">老店</span>
+    </div>
+
+    <div class="shop-grid">
+      <div class="shop">
+        <div class="shop-street">劳动西路</div>
+        <div class="shop-name">长青饸饹</div>
+        <div class="shop-desc">一碗饸饹，城西人的日常。</div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">大学南路</div>
+        <div class="shop-name">酱府老碗面</div>
+        <div class="shop-desc">老碗面管饱，酱香打底。</div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">大学南路</div>
+        <div class="shop-name">大嘴梆梆肉</div>
+        <div class="shop-desc">熏味梆梆肉，切一盘下饭。</div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">拴马桩</div>
+        <div class="shop-name">擀面皮</div>
+        <div class="shop-desc">筋道酸辣，一口上头。</div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">下马陵</div>
+        <div class="shop-name">长香源葫芦头</div>
+        <div class="shop-desc">汤浓味醇，葫芦头老规矩。</div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">东关南街</div>
+        <div class="shop-name">永盛斋泡馍</div>
+        <div class="shop-desc">自己掰馍，汤头见功夫。</div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">安东街</div>
+        <div class="shop-name">杨家粉蒸肉</div>
+        <div class="shop-desc">粉蒸肉油润不腻，垫馍一夹。</div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">安东街</div>
+        <div class="shop-name">牛记水饺</div>
+        <div class="shop-desc">皮薄馅足的街坊饺子馆。</div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">团结南路</div>
+        <div class="shop-name">锦福包子<span class="badge">¥1/个</span></div>
+        <div class="shop-desc">现包红油包子、鲜肉包子都是 1 元。<b>错开饭点去，排队人少。</b></div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">龙首北路</div>
+        <div class="shop-name">马峰酸汤饺子<span class="badge">炸牛肉盒巨好吃</span></div>
+        <div class="shop-desc">酸汤开胃，饺子带劲；别错过旁边的炸牛肉盒。</div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">朱雀东坊</div>
+        <div class="shop-name">也赛尔酸汤牛肉水饺</div>
+        <div class="shop-desc">酸汤牛肉馅，清真的扎实味道。</div>
+      </div>
+      <div class="shop">
+        <div class="shop-street">小皮院</div>
+        <div class="shop-name">穆萨馄饨牛肉面</div>
+        <div class="shop-desc">馄饨配牛肉面，回坊里的实在饭。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 肆 · 伴手礼 ===================== -->
+  <section class="ban" id="banshouli">
+    <div class="ban-head">
+      <span class="ban-no">肆</span>
+      <div>
+        <h2>带得走的西安</h2>
+        <p class="ban-sub">伴手礼 · 点心 / 绿豆馅饼 / 酱牛腊牛</p>
+      </div>
+      <span class="spacer"></span>
+      <span class="side-tag">伴手礼</span>
+    </div>
+
+    <div class="gift-grid">
+      <div class="gift">
+        <h3>传统点心<em>老字号扎堆</em></h3>
+        <div class="grp">名气大 · 偏贵</div>
+        <ul>
+          <li>德懋恭<small>西安点心招牌，送人体面。</small></li>
+          <li>全盛斋<small>同样有名，价格也高一些。</small></li>
+        </ul>
+        <div class="grp">开了好多年 · 性价比高</div>
+        <ul>
+          <li>德富圆 / 宝宝中西糕点 / 锦祥斋</li>
+          <li>生信斋 / 淑雅斋 / 兴盛园 / 安建坡</li>
+          <li><small>买的时候<b>看一下新鲜程度，怕有陈货</b>。</small></li>
+        </ul>
+      </div>
+
+      <div class="gift">
+        <h3>绿豆馅饼<em>现烤最好吃</em></h3>
+        <ul>
+          <li>赵记素斋<small>钟楼小区 · 名气大也最贵，偏甜。</small></li>
+          <li>雷记<small>四民巷。</small></li>
+          <li>玉波记<small>长乐坊。</small></li>
+          <li>昭明绿豆饼<small>科技路 · 不是很甜，本地人经常买；团购只便宜一点点。</small></li>
+          <li>好丽园<small>老店，有团购。</small></li>
+          <li>四香斋<small>新店，有团购。</small></li>
+          <li>飞淏绿豆饼<small>连锁，有团购。</small></li>
+          <li>福瑞思<small>咸宁中路。</small></li>
+        </ul>
+      </div>
+
+      <div class="gift">
+        <h3>酱牛 · 腊牛<em>可真空带走</em></h3>
+        <ul>
+          <li>馨磊<small>麦苋街 · 酱牛肚、酱牛肉有特色，<b>可以真空包装</b>；店里腊牛肉 <span class="price">¥58/斤</span>，性价比高。</small></li>
+          <li>安志亮<small>腊牛肉 <span class="price">¥70+/斤</span>，最近常吃的一家。</small></li>
+          <li>贾仲仁<small>腊牛肉 <span class="price">¥70+/斤</span>，与安志亮并称常吃。</small></li>
+          <li>兰信义<small>腊牛肉 <span class="price">¥58/斤</span>，就是有的偏肥。</small></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 伍 · 碎碎念 ===================== -->
+  <section class="ban" id="suininian">
+    <div class="ban-head">
+      <span class="ban-no">伍</span>
+      <div>
+        <h2>几句实话</h2>
+        <p class="ban-sub">本地人碎碎念 · 比攻略管用</p>
+      </div>
+      <span class="spacer"></span>
+      <span class="side-tag">贴士</span>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <span class="no">一</span>
+        <p>陕西的炒菜，说白了就是<b>家常菜</b>。那些名气大的网红陕菜馆，不过是家常菜包装了一下——想吃地道味，不如去街坊老店。</p>
+      </div>
+      <div class="note">
+        <span class="no">二</span>
+        <p>旅游高峰期西安的<b>酒店价格会涨不少</b>。可以住在<b>地铁沿线</b>，价格便宜一些；西安地铁还是挺方便的。</p>
+      </div>
+      <div class="note">
+        <span class="no">三</span>
+        <p>好铺子不挑时辰，但人挑：<b>错开饭点</b>，排队的人能少一半。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 陆 · 店铺索引 ===================== -->
+  <section class="ban" id="suyin">
+    <div class="ban-head">
+      <span class="ban-no">陆</span>
+      <div>
+        <h2>按图索骥</h2>
+        <p class="ban-sub">店铺索引 · 附地址与地图直达</p>
+      </div>
+      <span class="spacer"></span>
+      <span class="side-tag">索引</span>
+    </div>
+
+    <div class="table-wrap">
+      <table class="index">
+        <thead>
+          <tr><th>店 名</th><th>吃 什 么</th><th>地 址</th><th>地 图</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-name">馨磊酱肉店</td><td class="t-cat">酱牛肉 / 酱牛肚</td>
+            <td class="t-addr">莲湖区麦苋街90号</td>
+            <td><a class="map" href="https://www.amap.com/search?query=馨磊酱肉店%20麦苋街&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">马家锅盔一绝</td><td class="t-cat">锅 盔</td>
+            <td class="t-addr">莲湖区麦苋街54号</td>
+            <td><a class="map" href="https://www.amap.com/search?query=马家锅盔一绝%20麦苋街&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">老杨家饺子馆</td><td class="t-cat">饺 子</td>
+            <td class="t-addr">莲湖区小皮院89号</td>
+            <td><a class="map" href="https://www.amap.com/search?query=老杨家饺子馆%20小皮院&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">米文军小豆糕</td><td class="t-cat">小豆糕</td>
+            <td class="t-addr">莲湖区北广济街268号</td>
+            <td><a class="map" href="https://www.amap.com/search?query=米文军小豆糕%20北广济街&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">清真马宾小炒</td><td class="t-cat">泡馍小炒</td>
+            <td class="t-addr">莲湖区北广济街北口281号</td>
+            <td><a class="map" href="https://www.amap.com/search?query=清真马宾小炒%20北广济街&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">老刘家泡馍<small>陕西老字号 · 钟楼广济街店</small></td><td class="t-cat">牛羊肉泡馍</td>
+            <td class="t-addr">莲湖区北广济街101号路东</td>
+            <td><a class="map" href="https://www.amap.com/search?query=老刘家泡馍%20北广济街&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">好妈妈时令小吃</td><td class="t-cat">时令小吃</td>
+            <td class="t-addr">莲湖区庙后街172号</td>
+            <td><a class="map" href="https://www.amap.com/search?query=好妈妈时令小吃%20庙后街&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">土门老刘家粉汤羊血<small>西城芳洲店</small></td><td class="t-cat">粉汤羊血</td>
+            <td class="t-addr">莲湖区西二环路10号，天佑国际酒店往北20米</td>
+            <td><a class="map" href="https://www.amap.com/search?query=土门老刘家粉汤羊血&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">樊永平梆梆肉葫芦头</td><td class="t-cat">梆梆肉 / 葫芦头</td>
+            <td class="t-addr">灞桥区狄寨南路，狄寨街道中心幼儿园对面</td>
+            <td><a class="map" href="https://www.amap.com/search?query=樊永平梆梆肉葫芦头&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">刘二店正宗裤带面<small>围墙巷店</small></td><td class="t-cat">裤带面</td>
+            <td class="t-addr">碑林区围墙巷118号</td>
+            <td><a class="map" href="https://www.amap.com/search?query=刘二店正宗裤带面%20围墙巷&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">朱选民大米面皮<small>西木头市总店</small></td><td class="t-cat">大米面皮</td>
+            <td class="t-addr">碑林区西木头市，公安碑林分局南大街派出所户籍室隔壁</td>
+            <td><a class="map" href="https://www.amap.com/search?query=朱选民大米面皮%20西木头市&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">虎子水盆羊肉<small>翠华路总店</small></td><td class="t-cat">水盆羊肉</td>
+            <td class="t-addr">翠华路（总店）</td>
+            <td><a class="map" href="https://www.amap.com/search?query=虎子水盆羊肉%20翠华路&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+          <tr>
+            <td class="t-name">潇洒哥古法烤肉<small>雅苑东方店</small></td><td class="t-cat">古法烤肉</td>
+            <td class="t-addr">新城区建工路9号</td>
+            <td><a class="map" href="https://www.amap.com/search?query=潇洒哥古法烤肉%20建工路&amp;city=610100" target="_blank" rel="noopener">前往 ↗</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== 页脚 ===================== -->
+  <footer>
+    <span class="orn">❖ ❖ ❖</span>
+    本页由本地人口碑笔记整理 · 价格与店铺情况可能随时变动，前往前请自行核实<br>
+    长安食肆 编辑部 敬上 · 二〇二六年九月
+  </footer>
+
+</div>
+
+<script>
+  // 栏目导航高亮
+  const links = document.querySelectorAll('nav.toc a');
+  const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.toggle('active',
+          l.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => s && io.observe(s));
+</script>
+</body>
+</html>
