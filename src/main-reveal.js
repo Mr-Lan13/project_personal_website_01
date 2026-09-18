@@ -1,5 +1,4 @@
 const revealGroups = [
-  { selector: '.video-backdrop', effect: 'reveal-hero-video', baseDelay: 0 },
   { selector: '.nav', effect: 'reveal-from-top', baseDelay: 80 },
   {
     selector: '.hero .eyebrow, .hero-title-solid, .hero-title-outline, .hero-copy, .hero-actions > a',

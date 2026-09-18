@@ -51,33 +51,6 @@ function Icon(IconComponent, size = 18) {
   return h(IconComponent, { size, 'aria-hidden': true });
 }
 
-function VideoBackdrop() {
-  const [isMobile, setIsMobile] = React.useState(() => window.matchMedia('(max-width: 767px)').matches);
-
-  React.useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 767px)');
-    const handleChange = (event) => setIsMobile(event.matches);
-
-    setIsMobile(mediaQuery.matches);
-    mediaQuery.addEventListener?.('change', handleChange);
-    return () => mediaQuery.removeEventListener?.('change', handleChange);
-  }, []);
-
-  return h(
-    'div',
-    { className: 'video-backdrop', 'aria-hidden': true },
-    !isMobile && h('video', {
-      src: './assets/hero-background.mp4',
-      poster: './assets/project-ai-system.png',
-      autoPlay: true,
-      muted: true,
-      loop: true,
-      playsInline: true,
-      preload: 'auto',
-    }),
-  );
-}
-
 function Nav() {
   const [isTextOnly, setIsTextOnly] = React.useState(false);
   const [labGlow, setLabGlow] = React.useState(0);
@@ -137,7 +110,6 @@ function Hero() {
   return h(
     'section',
     { className: 'hero', id: 'top' },
-    h(VideoBackdrop),
     h(
       'div',
       { className: 'hero-inner page-shell' },
